@@ -1,2 +1,2 @@
 # CS2340_Project
-This repository is used for the project in CS2340 course in Georgia Tech
+This repository is used for CS2340 project in Georgia Tech. The team members are Tianyu Nan, Yi Xie, Cheng Zeng, Xibei Zhang and Xian Li.
