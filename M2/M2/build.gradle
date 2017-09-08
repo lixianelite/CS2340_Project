@@ -1,0 +1,15 @@
+apply plugin: 'java'
+
+sourceSets{
+	main.java.srcDir 'src/main/java'
+}
+
+dependencies{
+	compile files('lib/resources.jar')
+}
+
+jar{
+	manifest{
+		attributes 'AntLabMain': 'edu.gatech.oad.antlab.pkg1.AntLabMain' 
+	}
+}
