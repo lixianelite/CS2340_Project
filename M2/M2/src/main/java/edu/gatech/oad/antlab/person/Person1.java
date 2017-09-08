@@ -34,7 +34,7 @@ public class Person1 {
 		int len = input.length();
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < len; i++){
-			sb.append(input.charAt((i+2)%len);
+			sb.append(input.charAt((i+2)%len));
 		}
 		return sb.toString();
 	

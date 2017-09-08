@@ -18,8 +18,8 @@ public class Person5 {
 	 * @param pname the person's real name
 	 */
 
-  private Person5(String pname) {
-    name = pname;
+  public Person5(String pname) {
+    	name = pname;
   }
   	/**
 	 * This method should take the string
