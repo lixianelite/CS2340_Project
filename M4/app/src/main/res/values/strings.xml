@@ -3,6 +3,9 @@
 
     <!-- Strings related to login -->
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
     <string name="prompt_email">Username</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
@@ -10,6 +13,7 @@
     <string name="error_invalid_username">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">The usrname or password is incorrect</string>
+<<<<<<< HEAD
 =======
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -18,6 +22,8 @@
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
+>>>>>>> master
+=======
 >>>>>>> master
     <string name="error_field_required">This field is required</string>
     <string name="action_cancel">Cancel</string>

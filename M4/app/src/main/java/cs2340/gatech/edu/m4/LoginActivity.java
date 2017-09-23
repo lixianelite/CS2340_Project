@@ -53,9 +53,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
 <<<<<<< HEAD
+<<<<<<< HEAD
             "123@gmail.com:123456", "bar@example.com:world", "user:password"
 =======
             "123@gmail.com:123456", "bar@example.com:world"
+>>>>>>> master
+=======
+            "123@gmail.com:123456", "bar@example.com:world", "user:password"
 >>>>>>> master
     };
     /**
@@ -65,9 +69,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     // UI references.
 <<<<<<< HEAD
+<<<<<<< HEAD
     private AutoCompleteTextView mUserView;
 =======
     private AutoCompleteTextView mEmailView;
+>>>>>>> master
+=======
+    private AutoCompleteTextView mUserView;
 >>>>>>> master
     private EditText mPasswordView;
     private View mProgressView;
@@ -79,9 +87,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
         // Set up the login form.
 <<<<<<< HEAD
+<<<<<<< HEAD
         mUserView = (AutoCompleteTextView) findViewById(R.id.username);
 =======
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+>>>>>>> master
+=======
+        mUserView = (AutoCompleteTextView) findViewById(R.id.username);
 >>>>>>> master
         populateAutoComplete();
 
@@ -98,11 +110,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         Button mUsernameSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mUsernameSignInButton.setOnClickListener(new OnClickListener() {
 =======
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
+>>>>>>> master
+=======
+        Button mUsernameSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        mUsernameSignInButton.setOnClickListener(new OnClickListener() {
 >>>>>>> master
             @Override
             public void onClick(View view) {
@@ -114,12 +131,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         CancelButton.setOnClickListener(new OnClickListener() {
             @Override
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
             public void onClick(View view) {
                 Intent cancelIntent = new Intent (LoginActivity.this, WelcomeActivity.class);
                 LoginActivity.this.startActivity(cancelIntent);
                 finish();
             }
 
+<<<<<<< HEAD
 =======
             /*public void onClick(View view) {
                 finish();
@@ -144,6 +165,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 alert.show();
             }
 >>>>>>> master
+=======
+>>>>>>> master
         });
 
         mLoginFormView = findViewById(R.id.login_form);
@@ -167,9 +190,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             Snackbar.make(mUserView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
 =======
             Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+>>>>>>> master
+=======
+            Snackbar.make(mUserView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
 >>>>>>> master
                     .setAction(android.R.string.ok, new View.OnClickListener() {
                         @Override
@@ -210,17 +237,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // Reset errors.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
         mUserView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
         String username = mUserView.getText().toString();
+<<<<<<< HEAD
 =======
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
+>>>>>>> master
+=======
 >>>>>>> master
         String password = mPasswordView.getText().toString();
 
@@ -236,6 +269,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // Check for a valid email address.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
         if (TextUtils.isEmpty(username)) {
             mUserView.setError(getString(R.string.error_field_required));
             focusView = mUserView;
@@ -244,6 +280,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
+<<<<<<< HEAD
 =======
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
@@ -256,6 +293,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
 >>>>>>> master
+=======
+>>>>>>> master
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
@@ -265,24 +304,34 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // perform the user login attempt.
             showProgress(true);
 <<<<<<< HEAD
+<<<<<<< HEAD
             mAuthTask = new UserLoginTask(username, password);
 =======
             mAuthTask = new UserLoginTask(email, password);
+>>>>>>> master
+=======
+            mAuthTask = new UserLoginTask(username, password);
 >>>>>>> master
             mAuthTask.execute((Void) null);
         }
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
     /*private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");
     }*/
+<<<<<<< HEAD
 =======
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");
     }
+>>>>>>> master
+=======
 >>>>>>> master
 
     private boolean isPasswordValid(String password) {
@@ -346,6 +395,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
         List<String> usernames = new ArrayList<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -354,6 +406,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         addUsernamesToAutoComplete(usernames);
+<<<<<<< HEAD
 =======
         List<String> emails = new ArrayList<>();
         cursor.moveToFirst();
@@ -364,6 +417,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         addEmailsToAutoComplete(emails);
 >>>>>>> master
+=======
+>>>>>>> master
     }
 
     @Override
@@ -372,6 +427,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
     private void addUsernamesToAutoComplete(List<String> usernameAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
@@ -379,6 +437,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         android.R.layout.simple_dropdown_item_1line, usernameAddressCollection);
 
         mUserView.setAdapter(adapter);
+<<<<<<< HEAD
 =======
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
@@ -387,6 +446,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
+>>>>>>> master
+=======
 >>>>>>> master
     }
 
@@ -408,17 +469,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
         private final String mUsername;
         private final String mPassword;
 
         UserLoginTask(String username, String password) {
             mUsername = username;
+<<<<<<< HEAD
 =======
         private final String mEmail;
         private final String mPassword;
 
         UserLoginTask(String email, String password) {
             mEmail = email;
+>>>>>>> master
+=======
 >>>>>>> master
             mPassword = password;
         }
@@ -437,6 +504,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
                 if (pieces[0].equals(mUsername)) {
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
@@ -448,6 +518,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             // TODO: register the new account here.
             return false;
+<<<<<<< HEAD
 =======
                 if (pieces[0].equals(mEmail)) {
                     // Account exists, return true if the password matches.
@@ -457,6 +528,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             // TODO: register the new account here.
             return true;
+>>>>>>> master
+=======
 >>>>>>> master
         }
 

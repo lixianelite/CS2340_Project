@@ -1,0 +1,4 @@
+#Sat Sep 23 17:13:46 EDT 2017
+base.0=/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/M4/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+renamed.0=classes.dex
+file.0=/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/M4/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

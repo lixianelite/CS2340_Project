@@ -1,10 +1,13 @@
 apply plugin: 'java'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 sourceSets{ 	
 	main.java.srcDir 'src/main/java' 
 }
 
+=======
+>>>>>>> master
 =======
 >>>>>>> master
 dependencies{
@@ -19,7 +22,11 @@ jar{
 	}
 	manifest{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		attributes 'Main-Class': 'edu.gatech.oad.antlab.pkg1.AntLabMain'
+=======
+		attributes 'Main-Class' : 'edu.gatech.oad.antlab.pkg1.AntLabMain', 'Class-Path' : '../../lib/resources.jar'
+>>>>>>> master
 =======
 		attributes 'Main-Class' : 'edu.gatech.oad.antlab.pkg1.AntLabMain', 'Class-Path' : '../../lib/resources.jar'
 >>>>>>> master

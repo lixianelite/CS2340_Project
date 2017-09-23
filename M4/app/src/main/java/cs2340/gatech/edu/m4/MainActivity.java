@@ -18,9 +18,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 Intent logoutIntent = new Intent (MainActivity.this, WelcomeActivity.class);
 =======
                 Intent logoutIntent = new Intent (MainActivity.this, LoginActivity.class);
+>>>>>>> master
+=======
+                Intent logoutIntent = new Intent (MainActivity.this, WelcomeActivity.class);
 >>>>>>> master
                 MainActivity.this.startActivity(logoutIntent);
                 finish();
