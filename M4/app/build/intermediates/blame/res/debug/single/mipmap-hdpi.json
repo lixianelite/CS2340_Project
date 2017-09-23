@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
+        "source": "/Users/tianyunan/AndroidStudioProjects/M4/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher_round.png",
+        "source": "/Users/tianyunan/AndroidStudioProjects/M4/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+    }
+]
