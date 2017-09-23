@@ -1,7 +1,0 @@
-#Sat Sep 23 13:51:09 EDT 2017
-base.0=/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_e6f41b02b0f3fcc02544c4c5556003f01120e42b
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_32e406a86f515dc5a625b2bd2d7f3495cd384895/classes.dex
-base.1=/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_32e406a86f515dc5a625b2bd2d7f3495cd384895
-file.0=/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_e6f41b02b0f3fcc02544c4c5556003f01120e42b/classes.dex
