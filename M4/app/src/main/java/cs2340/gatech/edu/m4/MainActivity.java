@@ -17,7 +17,11 @@ public class MainActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
                 Intent logoutIntent = new Intent (MainActivity.this, WelcomeActivity.class);
+=======
+                Intent logoutIntent = new Intent (MainActivity.this, LoginActivity.class);
+>>>>>>> master
                 MainActivity.this.startActivity(logoutIntent);
                 finish();
             }

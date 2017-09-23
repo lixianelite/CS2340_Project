@@ -19,7 +19,7 @@ public class Person5 {
 	 */
 
   public Person5(String pname) {
-    name = pname;
+    	name = pname;
   }
   	/**
 	 * This method should take the string

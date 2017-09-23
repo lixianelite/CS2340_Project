@@ -35,10 +35,18 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
+<<<<<<< HEAD
                     android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
+=======
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
+>>>>>>> master
                     android:maxLines="1"
                     android:singleLine="true" />
 
