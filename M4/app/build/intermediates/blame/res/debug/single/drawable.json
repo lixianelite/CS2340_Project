@@ -8,12 +8,12 @@
         "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/drawable/abc_item_background_holo_dark.xml"
     },
     {
-        "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_indicator_material.xml",
-        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/drawable/abc_ratingbar_indicator_material.xml"
-    },
-    {
         "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_light.xml",
         "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/drawable/abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_indicator_material.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/drawable/abc_ratingbar_indicator_material.xml"
     },
     {
         "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_dark.xml",

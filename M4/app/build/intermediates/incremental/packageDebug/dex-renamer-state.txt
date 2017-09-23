@@ -1,4 +1,4 @@
-#Sat Sep 23 13:51:09 EDT 2017
+#Sat Sep 23 16:56:46 EDT 2017
 base.0=/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_e6f41b02b0f3fcc02544c4c5556003f01120e42b
 renamed.1=classes.dex
 renamed.0=classes2.dex

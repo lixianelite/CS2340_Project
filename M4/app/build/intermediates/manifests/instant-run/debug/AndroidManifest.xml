@@ -25,7 +25,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="cs2340.gatech.edu.m4.LoginActivity"
+            android:name="cs2340.gatech.edu.m4.WelcomeActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="cs2340.gatech.edu.m4.LoginActivity" />
         <activity android:name="cs2340.gatech.edu.m4.MainActivity" />
+        <activity android:name="cs2340.gatech.edu.m4.RegisterActivity" />
 
         <provider
             android:name="com.android.tools.fd.runtime.InstantRunContentProvider"

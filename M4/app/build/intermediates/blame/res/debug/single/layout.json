@@ -40,20 +40,20 @@
         "source": "/Users/tianyunan/AndroidStudioProjects/M4/app/src/main/res/layout/activity_main.xml"
     },
     {
-        "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
-        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/layout/abc_activity_chooser_view.xml"
-    },
-    {
         "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
         "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/layout/abc_screen_toolbar.xml"
     },
     {
-        "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_title_material.xml",
-        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/layout/abc_alert_dialog_title_material.xml"
+        "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/layout/abc_activity_chooser_view.xml"
     },
     {
         "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/layout/notification_template_media_custom.xml",
         "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/layout/notification_template_media_custom.xml"
+    },
+    {
+        "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_title_material.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/layout/abc_alert_dialog_title_material.xml"
     },
     {
         "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/layout/design_layout_tab_text.xml",
@@ -196,12 +196,20 @@
         "source": "/Users/tianyunan/.android/build-cache/21541ebe0d6fb58cbe8550982499e8bede512053/output/res/layout/design_text_input_password_icon.xml"
     },
     {
+        "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/layout/activity_register.xml",
+        "source": "/Users/tianyunan/AndroidStudioProjects/M4/app/src/main/res/layout/activity_register.xml"
+    },
+    {
         "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
         "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/layout/abc_select_dialog_material.xml"
     },
     {
         "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/layout/design_navigation_menu.xml",
         "source": "/Users/tianyunan/.android/build-cache/21541ebe0d6fb58cbe8550982499e8bede512053/output/res/layout/design_navigation_menu.xml"
+    },
+    {
+        "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/layout/activity_welcome.xml",
+        "source": "/Users/tianyunan/AndroidStudioProjects/M4/app/src/main/res/layout/activity_welcome.xml"
     },
     {
         "merged": "/Users/tianyunan/AndroidStudioProjects/M4/app/build/intermediates/res/merged/debug/layout/notification_template_custom_big.xml",
