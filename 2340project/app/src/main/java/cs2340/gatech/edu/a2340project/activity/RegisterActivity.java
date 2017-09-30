@@ -1,6 +1,7 @@
 package cs2340.gatech.edu.a2340project.activity;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import cs2340.gatech.edu.a2340project.R;
+import cs2340.gatech.edu.a2340project.model.DatabaseHelper;
 import cs2340.gatech.edu.a2340project.model.User;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -18,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText rUserView;
     private EditText rPasswordView;
     private EditText rEmail;
+    DatabaseHelper helper = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         user_typeSpinner.setAdapter(adapter);
 
-        /*Button signupButton = (Button) findViewById(R.id.signup_button);
+        Button signupButton = (Button) findViewById(R.id.signup_button);
         signupButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -58,10 +68,32 @@ public class RegisterActivity extends AppCompatActivity {
                 u.setEmail(remail);
                 u.setPassword(rpassword);
                 u.setUsertype(rusertype);
+                boolean check = helper.CheckIfDataExists(rusername);
+                if (check){
+                    AlertDialog.Builder debuilder = new AlertDialog.Builder(RegisterActivity.this);
+                    debuilder.setMessage("This username already exists")
+                            .setNegativeButton("Retry", null)
+                            .create()
+                            .show();
+                }
+                else{
+                    long success = helper.insertUser(u);
+                    if (success != -1){
+                        Intent rsintent = new Intent (RegisterActivity.this, LoginActivity.class);
+                        RegisterActivity.this.startActivity(rsintent);
+                        finish();
+                    }
+                    else{
+                        AlertDialog.Builder rfbuilder = new AlertDialog.Builder(RegisterActivity.this);
+                        rfbuilder.setMessage("Register Failed")
+                                .setNegativeButton("Retry", null)
+                                .create()
+                                .show();
+                    }
+                }
 
-                helper.insertUser(u);
+
             }
-        });*/
+        });
     }
 }
-
