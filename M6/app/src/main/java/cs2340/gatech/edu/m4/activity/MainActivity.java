@@ -60,10 +60,9 @@ public class MainActivity extends AppCompatActivity {
             br.readLine(); //get rid of header line
             int i = 1;
             Log.d(MainActivity.TAG, i + "");
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null && i<11) {
+
                 i++;
-                //line=line.replaceAll(",,", ",0,");
-                //line=line.replaceAll(",,", ",0,");
                 Log.d(MainActivity.TAG, line);
                 String[] tokens = line.split(",");
                 if (tokens.length != 51) {
@@ -73,7 +72,14 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 int id = Integer.parseInt(tokens[0]);
-                Log.d("MainActivity Debug", tokens[49]);
+                Log.d("MainActivity Debug", tokens[1]);
+                Log.d("MainActivity Debug", tokens[7]);
+                Log.d("MainActivity Debug", tokens[8]);
+                Log.d("MainActivity Debug", tokens[9]);
+                Log.d("MainActivity Debug", tokens[16]);
+                Log.d("MainActivity Debug", tokens[23]);
+                Log.d("MainActivity Debug", String.valueOf(tokens[49]));
+                Log.d("MainActivity Debug", String.valueOf(tokens[50]));
                 Log.d("MainActivity Debug", i + "");
                 model.addItem(new DataItem(id, tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], Float.valueOf(tokens[49]), Float.valueOf(tokens[50])));
             }

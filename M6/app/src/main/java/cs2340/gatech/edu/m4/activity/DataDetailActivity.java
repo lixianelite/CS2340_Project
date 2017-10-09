@@ -11,8 +11,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.List;
-
 import cs2340.gatech.edu.m4.R;
 import cs2340.gatech.edu.m4.model.DataItem;
 import cs2340.gatech.edu.m4.model.SimpleModel;
@@ -25,7 +23,7 @@ public class DataDetailActivity extends AppCompatActivity {
 
     private TextView dkey;
     private TextView ddate;
-    private TextView dlo;
+    private TextView dloc;
     private TextView dzip;
     private TextView daddr;
     private TextView dcity;
@@ -40,37 +38,31 @@ public class DataDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_detail);
 
+        int item_id = getIntent().getIntExtra(ARG_ITEM_ID, -1);
 
 
-        int id = getIntent().getIntExtra(ARG_ITEM_ID, -1);
-        Log.d("DataDetailActivity", id + "");
 
-
-        mItem = SimpleModel.INSTANCE.findItemById(id);
-        Log.d("DataDetailActivity", "find success!");
-        Log.d("DataDetailActivity", "id: " + mItem.getId() + "");
-
+        mItem = SimpleModel.INSTANCE.findItemById(item_id);
 
         dkey = (TextView) findViewById(R.id.detail_key);
         ddate = (TextView) findViewById(R.id.detail_date);
-        dlo = (TextView) findViewById(R.id.detail_lo);
+        dloc = (TextView) findViewById(R.id.detail_loc);
         dzip = (TextView) findViewById(R.id.detail_zip);
         daddr = (TextView) findViewById(R.id.detail_addr);
         dcity = (TextView) findViewById(R.id.detail_city);
         dbo = (TextView) findViewById(R.id.detail_bo);
         dla = (TextView) findViewById(R.id.detail_la);
-        dlon = (TextView) findViewById(R.id.detail_lo);
+        dlon = (TextView) findViewById(R.id.detail_lon);
 
-        dkey.setText(String.valueOf(mItem.getId()));
-
-        ddate.setText(String.valueOf(mItem.getCreatedDate()));
-
-        dlo.setText(String.valueOf(mItem.getLocationType()));
-        dzip.setText(String.valueOf(mItem.getZip()));
-        daddr.setText(String.valueOf(mItem.getAddress()));
-        dbo.setText(String.valueOf(mItem.getBorough()));
-        dla.setText(String.valueOf(mItem.getLatitude()));
-        dlon.setText(String.valueOf(mItem.getLongitude()));
+        dkey.setText("UniqueKey:"+ " " + String.valueOf(mItem.getId()));
+        ddate.setText("CreatedDate:" + " " + String.valueOf(mItem.getCreatedDate()));
+        dloc.setText("LocationType:" + " " + String.valueOf(mItem.getLocationType()));
+        dzip.setText("Zip:" + " " + String.valueOf(mItem.getZip()));
+        daddr.setText("Address:" + " " + String.valueOf(mItem.getAddress()));
+        dcity.setText("City:" + " " + String.valueOf(mItem.getCity()));
+        dbo.setText("Borough:" + " " + String.valueOf(mItem.getBorough()));
+        dla.setText("Latitude:" + " " + String.valueOf(mItem.getLatitude()));
+        dlon.setText("Longitude:" + " " + String.valueOf(mItem.getLongitude()));
 
 
 

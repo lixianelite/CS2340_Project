@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -46,30 +45,30 @@ public class DataListActivity extends AppCompatActivity {
         }
 
         @Override
-        public ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.activity_data_content, parent, false);
-
-            final ViewHolder holder = new ViewHolder(view);
-            holder.mView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = holder.getAdapterPosition();
-                    holder.mItem = mValues.get(position);
-                    Intent intent = new Intent(DataListActivity.this, DataDetailActivity.class);
-                    intent.putExtra(DataDetailActivity.ARG_ITEM_ID, holder.mItem.getId());
-                    startActivity(intent);
-                }
-            });
-
-            return holder;
+            return new ViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
             holder.mItem = mValues.get(position);
             holder.mIdView.setText("" + mValues.get(position).getId());
             holder.mContentView.setText(mValues.get(position).getCreatedDate());
+
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, DataDetailActivity.class);
+                    Log.d("MYAPP", "Switch to detailed view for item: " + holder.mItem.getId());
+                    intent.putExtra(DataDetailActivity.ARG_ITEM_ID,holder.mItem.getId());
+                    Log.d("MYAPP", "Switch to detailed view for item: " + DataDetailActivity.ARG_ITEM_ID);
+
+                    context.startActivity(intent);
+                }
+            });
         }
 
         @Override
