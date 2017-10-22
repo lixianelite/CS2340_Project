@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cs2340.gatech.edu.m4.activity.ReportActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/date"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="datetime"
+            android:hint="Created Date (MM/DD/YY)"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginStart="35dp" />
+
+        <EditText
+            android:id="@+id/location"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Location Type"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="40dp" />
+
+        <EditText
+            android:id="@+id/zip"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="Zip"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="40dp" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Address"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="40dp" />
+
+        <EditText
+            android:id="@+id/city"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="City"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="40dp" />
+
+        <EditText
+            android:id="@+id/borough"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Borough"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="40dp" />
+
+        <EditText
+            android:id="@+id/latitude"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:hint="Latitude"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="40dp" />
+
+        <EditText
+            android:id="@+id/longitude"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:hint="Longitude"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="40dp" />
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/report_write_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Report"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"/>
+
+            <Button
+                android:id="@+id/report_cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="120dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</ScrollView>

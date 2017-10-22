@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/layout-v21/notification_action_tombstone.xml"
+    }
+]
