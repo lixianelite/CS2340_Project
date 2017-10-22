@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("MainActivity Debug", String.valueOf(tokens[49]));
                 Log.d("MainActivity Debug", String.valueOf(tokens[50]));
                 Log.d("MainActivity Debug", i + "");
-                Log.d("Test", "Test");
+                Log.d("MainActivity", tokens[1]);
                 model.addItem(new DataItem(id, tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], Float.valueOf(tokens[49]), Float.valueOf(tokens[50])));
             }
             br.close();
