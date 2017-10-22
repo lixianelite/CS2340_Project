@@ -75,8 +75,6 @@ public class MainActivity extends AppCompatActivity {
                 String[] tokens = line.split(",");
                 if (tokens.length != 51) {
                     continue;
-
-
                 }
 
                 String id = tokens[0];
