@@ -70,7 +70,5 @@ public class ReportActivity extends AppCompatActivity {
         list.add(0,data);
 
     }
-
-
-
+    
 }
