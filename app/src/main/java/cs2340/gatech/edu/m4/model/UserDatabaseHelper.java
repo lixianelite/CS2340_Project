@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by tianyunan on 9/29/17.
  */
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class UserDatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "users.db";
     private static final String TABLE_NAME = "users";
@@ -26,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + "username TEXT NOT NULL," + "password TEXT NOT NULL," + "email TEXT NOT NULL," + "usertype TEXT NOT NULL" + ");";
 
 
-    public DatabaseHelper(Context context){
+    public UserDatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     @Override
@@ -67,8 +67,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.close();
         return success_insert;
-
-
 
     }
 
