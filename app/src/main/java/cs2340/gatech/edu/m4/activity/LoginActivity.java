@@ -126,24 +126,7 @@ public class LoginActivity extends AppCompatActivity {
             Log.e(MainActivity.TAG, "error reading assets", e);
         }
     }
-
-
-    /*private void readIntoDatabase(SQLiteDatabase db, DataItem item){
-        ContentValues values = new ContentValues();
-        values.put("id", item.getId());
-        values.put("date", item.getCreatedDate());
-        values.put("location_type", item.getLocationType());
-        values.put("zip", item.getZip());
-        values.put("address", item.getAddress());
-        values.put("city", item.getCity());
-        values.put("borough", item.getBorough());
-        values.put("latitude", item.getLatitude());
-        values.put("longitude", item.getLongitude());
-        long judge = db.insert("data", null, values);
-        if (judge == -1){
-            Log.d("LoginActivity", "insert error!");
-        }
-    }*/
+    
 
     private void loadId(SQLiteDatabase db){
         SimpleModel model = SimpleModel.INSTANCE;
