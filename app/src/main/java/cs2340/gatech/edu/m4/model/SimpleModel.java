@@ -3,13 +3,10 @@ package cs2340.gatech.edu.m4.model;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
-/**
- * Created by tianyunan on 10/8/17.
- */
 
 public class SimpleModel {
     public static final SimpleModel INSTANCE = new SimpleModel();
@@ -17,8 +14,11 @@ public class SimpleModel {
 
     private List<DataItem> items;
 
+    private Set<Integer> idContainer;
+
     private SimpleModel() {
         items = new ArrayList<>();
+        idContainer = new HashSet<>();
     }
 
     public void addItem(DataItem item) {
@@ -29,11 +29,21 @@ public class SimpleModel {
         return items;
     }
 
+    public Set<Integer> getIdContainer(){
+        return idContainer;
+    }
 
+    public void addId(Integer id){
+        idContainer.add(id);
+    }
 
-    public DataItem findItemById(String id) {
+    public boolean containsId(int id){
+        return idContainer.contains(id);
+    }
+
+    public DataItem findItemById(int id) {
         for (DataItem d : items) {
-            if (d.getId().equals(id)) return d;
+            if (d.getId() == id) return d;
         }
         Log.d("MYAPP", "Warning - Failed to find id: " + id);
         return null;
