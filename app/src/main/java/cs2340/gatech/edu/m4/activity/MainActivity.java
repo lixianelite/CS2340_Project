@@ -32,40 +32,6 @@ public class MainActivity extends AppCompatActivity {
         DataItemAdapter adapter = new DataItemAdapter(SimpleModel.INSTANCE.getItems());
         recyclerView.setAdapter(adapter);
 
-
-
-
-        /*Button logoutButton = (Button) findViewById(R.id.logout_button);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent logoutIntent = new Intent(MainActivity.this, WelcomeActivity.class);
-                MainActivity.this.startActivity(logoutIntent);
-                finish();
-            }
-        });
-
-        Button loaddataButton = (Button) findViewById(R.id.loaddata_button);
-        loaddataButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                readSDFile();
-                Intent DataIntent = new Intent(MainActivity.this, DataListActivity.class);
-                MainActivity.this.startActivity(DataIntent);
-            }
-        });
-
-        Button reportButton = (Button) findViewById(R.id.report_button);
-        reportButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                Intent ReportIntent = new Intent(MainActivity.this, ReportActivity.class);
-                MainActivity.this.startActivity(ReportIntent);
-            }
-        });*/
-
     }
 
     @Override
@@ -82,9 +48,6 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(ReportIntent);
                 break;
             case R.id.loaddata_button:
-                //readSDFile();
-                //Intent DataIntent = new Intent(MainActivity.this, DataListActivity.class);
-                //MainActivity.this.startActivity(DataIntent);
                 break;
             case R.id.logout_button:
                 Intent logoutIntent = new Intent(MainActivity.this, WelcomeActivity.class);
