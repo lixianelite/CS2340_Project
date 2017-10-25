@@ -1,8 +1,10 @@
 package cs2340.gatech.edu.m4.model;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 /**
@@ -38,5 +40,22 @@ public class DataDatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+
+    public static void readIntoDatabase(SQLiteDatabase db, DataItem item){
+        ContentValues values = new ContentValues();
+        values.put("id", item.getId());
+        values.put("date", item.getCreatedDate());
+        values.put("location_type", item.getLocationType());
+        values.put("zip", item.getZip());
+        values.put("address", item.getAddress());
+        values.put("city", item.getCity());
+        values.put("borough", item.getBorough());
+        values.put("latitude", item.getLatitude());
+        values.put("longitude", item.getLongitude());
+        long judge = db.insert("data", null, values);
+        if (judge == -1){
+            Log.d("LoginActivity", "insert error!");
+        }
     }
 }
