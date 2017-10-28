@@ -1,101 +1,85 @@
 package cs2340.gatech.edu.m4.activity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import cs2340.gatech.edu.m4.R;
+import cs2340.gatech.edu.m4.model.DataDatabaseHelper;
 import cs2340.gatech.edu.m4.model.DataItem;
+import cs2340.gatech.edu.m4.model.DataItemAdapter;
 import cs2340.gatech.edu.m4.model.SimpleModel;
 
 public class MainActivity extends AppCompatActivity {
     public static String TAG = "MY_APP";
+    private DataDatabaseHelper dataDatabaseHelper;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Button logoutButton = (Button) findViewById(R.id.logout_button);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent logoutIntent = new Intent(MainActivity.this, WelcomeActivity.class);
-                MainActivity.this.startActivity(logoutIntent);
-                finish();
-            }
-        });
-
-        Button loaddataButton = (Button) findViewById(R.id.loaddata_button);
-        loaddataButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                readSDFile();
-                Intent DataIntent = new Intent(MainActivity.this, DataListActivity.class);
-                MainActivity.this.startActivity(DataIntent);
-            }
-        });
-
-        Button reportButton = (Button) findViewById(R.id.report_button);
-        reportButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                Intent ReportIntent = new Intent(MainActivity.this, ReportActivity.class);
-                MainActivity.this.startActivity(ReportIntent);
-            }
-        });
+        dataDatabaseHelper = new DataDatabaseHelper(this, "Data.db", null, 1);
+        db = dataDatabaseHelper.getWritableDatabase();
+        readDatabase(db);
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        DataItemAdapter adapter = new DataItemAdapter(SimpleModel.INSTANCE.getItems());
+        recyclerView.setAdapter(adapter);
 
     }
 
-    private void readSDFile() {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.report_button:
+                Intent ReportIntent = new Intent(MainActivity.this, ReportActivity.class);
+                MainActivity.this.startActivity(ReportIntent);
+                break;
+            case R.id.loaddata_button:
+                break;
+            case R.id.logout_button:
+                Intent logoutIntent = new Intent(MainActivity.this, WelcomeActivity.class);
+                MainActivity.this.startActivity(logoutIntent);
+                finish();
+                break;
+            default:
+        }
+        return true;
+    }
+
+    private void readDatabase(SQLiteDatabase db){
         SimpleModel model = SimpleModel.INSTANCE;
 
-        try {
-            InputStream is = getResources().openRawResource(R.raw.rat_sightings);
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
-            String line;
-            br.readLine(); //get rid of header line
-            int i = 1;
-            Log.d(MainActivity.TAG, i + "");
-            while ((line = br.readLine()) != null && i < 21 ) {
-
-                i++;
-                Log.d(MainActivity.TAG, line);
-                String[] tokens = line.split(",");
-                if (tokens.length != 51) {
-                    continue;
-                }
-
-                String id = tokens[0];
-                Log.d("MainActivity Debug", tokens[1]);
-                Log.d("MainActivity Debug", tokens[7]);
-                Log.d("MainActivity Debug", tokens[8]);
-                Log.d("MainActivity Debug", tokens[9]);
-                Log.d("MainActivity Debug", tokens[16]);
-                Log.d("MainActivity Debug", tokens[23]);
-                Log.d("MainActivity Debug", String.valueOf(tokens[49]));
-                Log.d("MainActivity Debug", String.valueOf(tokens[50]));
-                Log.d("MainActivity Debug", i + "");
-                Log.d("MainActivity", tokens[1]);
-                model.addItem(new DataItem(id, tokens[1], tokens[7], tokens[8], tokens[9], tokens[16], tokens[23], Float.valueOf(tokens[49]), Float.valueOf(tokens[50])));
-            }
-            br.close();
-        } catch (IOException e) {
-            Log.e(MainActivity.TAG, "error reading assets", e);
-
-
+        Cursor cursor = db.query("data", null, null, null, null, null, null);
+        if (cursor.moveToFirst()){
+            do{
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                String date = cursor.getString(cursor.getColumnIndex("date"));
+                String location_type = cursor.getString(cursor.getColumnIndex("location_type"));
+                int zip = cursor.getInt(cursor.getColumnIndex("zip"));
+                String address = cursor.getString(cursor.getColumnIndex("address"));
+                String city = cursor.getString(cursor.getColumnIndex("city"));
+                String borough = cursor.getString(cursor.getColumnIndex("borough"));
+                float latitude = cursor.getFloat(cursor.getColumnIndex("latitude"));
+                float longitude = cursor.getFloat(cursor.getColumnIndex("longitude"));
+                DataItem item = new DataItem(id, date, location_type, zip, address, city, borough, latitude, longitude);
+                model.addItem(item);
+            }while (cursor.moveToNext());
+            cursor.close();
         }
+
     }
 
 }
