@@ -6,5 +6,13 @@
     {
         "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/mipmap-mdpi/ic_launcher.png",
         "source": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/mipmap-mdpi/ic_launcher.png",
+        "source": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/mipmap-mdpi/ic_launcher_round.png",
+        "source": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
     }
 ]

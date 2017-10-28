@@ -1,9 +1,5 @@
 [
     {
-        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/switch_thumb_material_dark.xml",
-        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/switch_thumb_material_dark.xml"
-    },
-    {
         "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_dark.xml",
         "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_primary_text_disable_only_material_dark.xml"
     },
@@ -12,8 +8,140 @@
         "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_secondary_text_material_light.xml"
     },
     {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_dark.xml",
+        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_tint_switch_track.xml",
+        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_dark.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/switch_thumb_material_dark.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_tint_btn_checkable.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_btn_colored_borderless_text_material.xml",
+        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_tint_seek_thumb.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/switch_thumb_material_light.xml",
+        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_search_url_text.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_search_url_text.xml"
+    },
+    {
         "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_hint_foreground_material_dark.xml",
         "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_hint_foreground_material_dark.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/switch_thumb_material_light.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/common_google_signin_btn_text_dark.xml",
+        "source": "/Users/tianyunan/.android/build-cache/ff53ac6c1c520c507867a97ea8152612c9d5c95e/output/res/color/common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_tint_default.xml",
+        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_tint_default.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_tint_switch_track.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/design_error.xml",
+        "source": "/Users/tianyunan/.android/build-cache/21541ebe0d6fb58cbe8550982499e8bede512053/output/res/color/design_error.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_light.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_primary_text_material_light.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_dark.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/wallet_secondary_text_holo_dark.xml",
+        "source": "/Users/tianyunan/.android/build-cache/b53983853c1d7eca4c0572d9be4c614423d3d945/output/res/color/wallet_secondary_text_holo_dark.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_btn_colored_borderless_text_material.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_hint_foreground_material_light.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_hint_foreground_material_light.xml"
+    },
+    {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_tint_edittext.xml",
+        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_tint_edittext.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_light.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/design_error.xml",
+        "source": "/Users/bravado/.android/build-cache/5dbae56c895d397a2a945363ddc97d98c7cd0e93/output/res/color/design_error.xml"
+    },
+    {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_hint_foreground_material_light.xml",
+        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_hint_foreground_material_light.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_hint_foreground_material_dark.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_hint_foreground_material_dark.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_secondary_text_material_dark.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_light.xml",
+        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/design_tint_password_toggle.xml",
+        "source": "/Users/bravado/.android/build-cache/5dbae56c895d397a2a945363ddc97d98c7cd0e93/output/res/color/design_tint_password_toggle.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_tint_default.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_tint_default.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/wallet_primary_text_holo_light.xml",
+        "source": "/Users/tianyunan/.android/build-cache/b53983853c1d7eca4c0572d9be4c614423d3d945/output/res/color/wallet_primary_text_holo_light.xml"
+    },
+    {
+        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/switch_thumb_material_dark.xml",
+        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_secondary_text_material_light.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_btn_colored_text_material.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_btn_colored_text_material.xml"
     },
     {
         "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_search_url_text.xml",
@@ -24,28 +152,16 @@
         "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_tint_seek_thumb.xml"
     },
     {
-        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_tint_edittext.xml",
-        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_tint_edittext.xml"
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/design_tint_password_toggle.xml",
+        "source": "/Users/tianyunan/.android/build-cache/21541ebe0d6fb58cbe8550982499e8bede512053/output/res/color/design_tint_password_toggle.xml"
     },
     {
-        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_dark.xml",
-        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_primary_text_material_dark.xml"
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_tint_switch_thumb.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_tint_switch_thumb.xml"
     },
     {
-        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_tint_default.xml",
-        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_tint_default.xml"
-    },
-    {
-        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_tint_switch_track.xml",
-        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_tint_switch_track.xml"
-    },
-    {
-        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_hint_foreground_material_light.xml",
-        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_hint_foreground_material_light.xml"
-    },
-    {
-        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/design_error.xml",
-        "source": "/Users/bravado/.android/build-cache/5dbae56c895d397a2a945363ddc97d98c7cd0e93/output/res/color/design_error.xml"
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/common_google_signin_btn_tint.xml",
+        "source": "/Users/tianyunan/.android/build-cache/ff53ac6c1c520c507867a97ea8152612c9d5c95e/output/res/color/common_google_signin_btn_tint.xml"
     },
     {
         "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_btn_colored_text_material.xml",
@@ -64,18 +180,6 @@
         "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_secondary_text_material_dark.xml"
     },
     {
-        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_light.xml",
-        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_primary_text_disable_only_material_light.xml"
-    },
-    {
-        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_btn_colored_borderless_text_material.xml",
-        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_btn_colored_borderless_text_material.xml"
-    },
-    {
-        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/design_tint_password_toggle.xml",
-        "source": "/Users/bravado/.android/build-cache/5dbae56c895d397a2a945363ddc97d98c7cd0e93/output/res/color/design_tint_password_toggle.xml"
-    },
-    {
         "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_tint_btn_checkable.xml",
         "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_tint_btn_checkable.xml"
     },
@@ -84,7 +188,11 @@
         "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/abc_primary_text_material_light.xml"
     },
     {
-        "merged": "/Users/bravado/Documents/thirdSemester/2340/CS2340_Project/app/build/intermediates/res/merged/debug/color/switch_thumb_material_light.xml",
-        "source": "/Users/bravado/.android/build-cache/92c150917460b9785786abb81883150eaa7928dc/output/res/color/switch_thumb_material_light.xml"
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/common_google_signin_btn_text_light.xml",
+        "source": "/Users/tianyunan/.android/build-cache/ff53ac6c1c520c507867a97ea8152612c9d5c95e/output/res/color/common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/GT/2017 Fall/Object and Design/project/CS2340_Project/app/build/intermediates/res/merged/debug/color/abc_tint_spinner.xml",
+        "source": "/Users/tianyunan/.android/build-cache/c4421a1073470eb1f9ca3e22795d0078cebb1144/output/res/color/abc_tint_spinner.xml"
     }
 ]
