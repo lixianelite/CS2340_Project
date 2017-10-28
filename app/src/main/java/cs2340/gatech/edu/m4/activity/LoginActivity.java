@@ -126,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
             Log.e(MainActivity.TAG, "error reading assets", e);
         }
     }
-    
+
 
     private void loadId(SQLiteDatabase db){
         SimpleModel model = SimpleModel.INSTANCE;

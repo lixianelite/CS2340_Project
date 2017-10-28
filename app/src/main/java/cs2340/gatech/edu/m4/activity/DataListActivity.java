@@ -62,9 +62,8 @@ public class DataListActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Context context = v.getContext();
                     Intent intent = new Intent(context, DataDetailActivity.class);
-                    Log.d("MYAPP", "Switch to detailed view for item: " + holder.mItem.getId());
+
                     intent.putExtra(DataDetailActivity.ARG_ITEM_ID,holder.mItem.getId());
-                    Log.d("MYAPP", "Switch to detailed view for item: " + DataDetailActivity.ARG_ITEM_ID);
 
                     context.startActivity(intent);
                 }

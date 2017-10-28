@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import cs2340.gatech.edu.m4.R;
-import cs2340.gatech.edu.m4.model.DatabaseHelper;
+import cs2340.gatech.edu.m4.model.UserDatabaseHelper;
 import cs2340.gatech.edu.m4.model.User;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -20,7 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText rUserView;
     private EditText rPasswordView;
     private EditText rEmail;
-    DatabaseHelper helper = new DatabaseHelper(this);
+    UserDatabaseHelper helper = new UserDatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +84,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 .show();
                     }
                 }
-
-
             }
         });
     }

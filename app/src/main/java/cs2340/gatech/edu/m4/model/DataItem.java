@@ -5,18 +5,17 @@ package cs2340.gatech.edu.m4.model;
  */
 
 public class DataItem {
-    private String id;
+    private int id;
     private String createdDate;
     private String locationType;
-    private String zip;
+    private int zip;
     private String address;
     private String city;
     private String borough;
     private float latitude;
     private float longitude;
-    private static int report_id = 0;
 
-    public DataItem(String id, String cd, String lo, String zip, String add, String city, String bo, float la, float lon) {
+    public DataItem(int id, String cd, String lo, int zip, String add, String city, String bo, float la, float lon) {
         this.id = id;
         createdDate = cd;
         locationType = lo;
@@ -26,22 +25,20 @@ public class DataItem {
         borough = bo;
         latitude = la;
         longitude = lon;
-        report_id++;
     }
 
     //public String toString() {
        // return name + " " + id;
     //}
 
-    public String getId() { return id; }
+    public int getId() { return id; }
     public String getCreatedDate() { return createdDate; }
     public String getLocationType() { return locationType; }
-    public String getZip() { return zip; }
+    public int getZip() { return zip; }
     public String getAddress() { return address; }
     public String getCity() { return city; }
     public String getBorough() { return borough; }
     public float getLatitude() { return latitude; }
     public float getLongitude() { return longitude; }
-    public static String getReportId() {return "a" + String.valueOf(report_id);}
 
 }
