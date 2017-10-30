@@ -47,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent ReportIntent = new Intent(MainActivity.this, ReportActivity.class);
                 MainActivity.this.startActivity(ReportIntent);
                 break;
-            case R.id.loaddata_button:
+            case R.id.map_display:
+                Intent MapDisplay = new Intent(MainActivity.this, MapDisplayActivity.class);
+                MainActivity.this.startActivity(MapDisplay);
                 break;
             case R.id.logout_button:
                 Intent logoutIntent = new Intent(MainActivity.this, WelcomeActivity.class);
