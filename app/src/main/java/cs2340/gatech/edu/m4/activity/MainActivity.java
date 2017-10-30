@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         dataDatabaseHelper = new DataDatabaseHelper(this, "Data.db", null, 1);
         db = dataDatabaseHelper.getWritableDatabase();
-        readDatabase(db);
+        DataDatabaseHelper.readDatabase(db);
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         DataItemAdapter adapter = new DataItemAdapter(SimpleModel.INSTANCE.getItems());
         recyclerView.setAdapter(adapter);
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.report_button:
                 Intent ReportIntent = new Intent(MainActivity.this, ReportActivity.class);
+                ReportIntent.putExtra("className", "MainActivity");
                 MainActivity.this.startActivity(ReportIntent);
                 break;
             case R.id.map_display:
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void readDatabase(SQLiteDatabase db){
+    /*private void readDatabase(SQLiteDatabase db){
         SimpleModel model = SimpleModel.INSTANCE;
 
         Cursor cursor = db.query("data", null, null, null, null, null, null);
@@ -82,6 +83,6 @@ public class MainActivity extends AppCompatActivity {
             cursor.close();
         }
 
-    }
+    }*/
 
 }

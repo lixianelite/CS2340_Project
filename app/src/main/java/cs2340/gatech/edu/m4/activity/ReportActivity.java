@@ -1,5 +1,6 @@
 package cs2340.gatech.edu.m4.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +29,7 @@ public class ReportActivity extends AppCompatActivity {
     private Random random;
     private DataDatabaseHelper dataDatabaseHelper;
     private SQLiteDatabase db;
-
+    private String receivedClassName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,9 @@ public class ReportActivity extends AppCompatActivity {
         dataDatabaseHelper = new DataDatabaseHelper(this, "Data.db", null, 1);
         db = dataDatabaseHelper.getWritableDatabase();
 
+        Intent receivedIntent = getIntent();
+        receivedClassName = receivedIntent.getStringExtra("className");
+        if (receivedClassName.equals("MapDisplayActivity")) MapReportConfiguration(receivedIntent);
 
         Button report_cancelButton = (Button) findViewById(R.id.report_cancel_button);
         report_cancelButton.setOnClickListener(new View.OnClickListener(){
@@ -64,11 +68,24 @@ public class ReportActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 WriteData();
-                Intent report_writeIntent = new Intent(ReportActivity.this, MainActivity.class);
+                Intent report_writeIntent;
+
+                report_writeIntent = receivedClassName.equals("MapDisplayActivity") ?
+                        new Intent(ReportActivity.this, MapDisplayActivity.class):
+                        new Intent(ReportActivity.this, MainActivity.class);
                 ReportActivity.this.startActivity(report_writeIntent);
                 finish();
             }
         });
+    }
+
+    private void MapReportConfiguration(Intent receivedIntent){
+        double latitude = receivedIntent.getDoubleExtra("latitude", -1);
+        double longitude = receivedIntent.getDoubleExtra("longitude", -1);
+        latitudeText.setText(latitude + "");
+        longitudeText.setText(longitude + "");
+        longitudeText.setEnabled(false);
+        latitudeText.setEnabled(false);
     }
 
     private void WriteData(){
@@ -77,10 +94,9 @@ public class ReportActivity extends AppCompatActivity {
         while (model.containsId(genId)){
             genId = 10000000 + random.nextInt(90000000);
         }
-        Log.d("ReportActivity_genId", genId + "");
         DataItem data = new DataItem(genId,dateText.getText().toString(), locationText.getText().toString(), Integer.valueOf(zipText.getText().toString()), addressText.getText().toString(), cityText.getText().toString(), boroughText.getText().toString(), Float.valueOf(latitudeText.getText().toString()), Float.valueOf(longitudeText.getText().toString()));
         model.addId(genId);
-        DataDatabaseHelper.readIntoDatabase(db, data);
+        DataDatabaseHelper.writeIntoDatabase(db, data);
     }
 
 }

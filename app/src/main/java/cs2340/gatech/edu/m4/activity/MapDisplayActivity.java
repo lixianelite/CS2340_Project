@@ -25,6 +25,7 @@ import java.sql.ClientInfoStatus;
 import java.util.List;
 
 import cs2340.gatech.edu.m4.*;
+import cs2340.gatech.edu.m4.model.DataDatabaseHelper;
 import cs2340.gatech.edu.m4.model.DataItem;
 import cs2340.gatech.edu.m4.model.SimpleModel;
 
@@ -37,6 +38,8 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
             GoogleMap.OnMapLongClickListener{
 
     private GoogleMap mMap;
+
+    private DataDatabaseHelper dataDatabaseHelper;
 
 
     @Override
@@ -64,6 +67,7 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         }
         DataItem lastItem = list.get(list.size() - 1);
         mMap.setOnInfoWindowLongClickListener(this);
+        mMap.setOnMapLongClickListener(this);
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lastItem.getLatitude(), lastItem.getLongitude())));
     }
@@ -103,7 +107,11 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
     public void onMapLongClick(LatLng latLng) {
         double latitude = latLng.latitude;
         double longitude = latLng.longitude;
-
-
+        Intent intent = new Intent(MapDisplayActivity.this, ReportActivity.class);
+        intent.putExtra("className", "MapDisplayActivity");
+        intent.putExtra("latitude", latitude);
+        intent.putExtra("longitude", longitude);
+        startActivity(intent);
+        finish();
     }
 }
