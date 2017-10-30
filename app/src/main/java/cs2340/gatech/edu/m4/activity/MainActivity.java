@@ -18,25 +18,16 @@ import cs2340.gatech.edu.m4.model.SimpleModel;
 
 public class MainActivity extends AppCompatActivity {
     public static String TAG = "MY_APP";
-    //private DataDatabaseHelper dataDatabaseHelper;
-    //private SQLiteDatabase db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        /*dataDatabaseHelper = new DataDatabaseHelper(this, "Data.db", null, 1);
-        db = dataDatabaseHelper.getWritableDatabase();*/
-
-        //DataDatabaseHelper.readDatabase(db);
-
-
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         DataItemAdapter adapter = new DataItemAdapter(SimpleModel.INSTANCE.getItems());
         recyclerView.setAdapter(adapter);
-
     }
 
     @Override
@@ -59,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.logout_button:
                 Intent logoutIntent = new Intent(MainActivity.this, WelcomeActivity.class);
+                SimpleModel.INSTANCE.getItems().clear();
+                SimpleModel.INSTANCE.getIdContainer().clear();
                 MainActivity.this.startActivity(logoutIntent);
                 finish();
                 break;

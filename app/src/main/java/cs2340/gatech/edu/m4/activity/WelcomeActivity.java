@@ -22,26 +22,16 @@ import cs2340.gatech.edu.m4.model.SimpleModel;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    private DataDatabaseHelper dataDatabaseHelper;
-    private SQLiteDatabase db;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        dataDatabaseHelper = new DataDatabaseHelper(this, "Data.db", null, 1);
-        db = dataDatabaseHelper.getWritableDatabase();
-
-
         Button loginButton2 = (Button) findViewById(R.id.login_button2);
+
         loginButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                DataDatabaseHelper.loadId(db);
-                readSDFile();
-                DataDatabaseHelper.readDatabase(db);
                 Intent loginIntent = new Intent (WelcomeActivity.this, LoginActivity.class);
                 WelcomeActivity.this.startActivity(loginIntent);
                 finish();
@@ -83,33 +73,4 @@ public class WelcomeActivity extends AppCompatActivity {
         });
     }
 
-    private void readSDFile() {
-        SimpleModel model = SimpleModel.INSTANCE;
-
-        try {
-            InputStream is = getResources().openRawResource(R.raw.rat_sightings);
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
-            String line;
-            br.readLine(); //get rid of header line
-            int i = 1;
-            while ((line = br.readLine()) != null && i < 10 ) {
-                i++;
-                Log.d(MainActivity.TAG, line);
-                String[] tokens = line.split(",");
-                if (tokens.length != 51) {
-                    continue;
-                }
-                int id = Integer.parseInt(tokens[0]);
-                if (!model.containsId(id)) {
-                    DataItem item = new DataItem(id, tokens[1], tokens[7], Integer.valueOf(tokens[8]), tokens[9], tokens[16], tokens[23], Float.valueOf(tokens[49]), Float.valueOf(tokens[50]));
-                    DataDatabaseHelper.writeIntoDatabase(db, item);
-                    model.addId(id);
-                }
-            }
-            br.close();
-        } catch (IOException e) {
-            Log.e(MainActivity.TAG, "error reading assets", e);
-        }
-    }
 }

@@ -15,6 +15,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import cs2340.gatech.edu.m4.R;
 import cs2340.gatech.edu.m4.model.DataDatabaseHelper;
 import cs2340.gatech.edu.m4.model.DataItem;
@@ -31,6 +36,10 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mUserView;
     private EditText mPasswordView;
 
+    private DataDatabaseHelper dataDatabaseHelper;
+    private SQLiteDatabase db;
+
+
     UserDatabaseHelper helper = new UserDatabaseHelper(this);
 
     @Override
@@ -40,6 +49,9 @@ public class LoginActivity extends AppCompatActivity {
         mUserView = (EditText) findViewById(R.id.username);
 
         mPasswordView = (EditText) findViewById(R.id.password);
+
+        dataDatabaseHelper = new DataDatabaseHelper(this, "Data.db", null, 1);
+        db = dataDatabaseHelper.getWritableDatabase();
 
         Button mUsernameSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mUsernameSignInButton.setOnClickListener(new OnClickListener() {
@@ -57,6 +69,11 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 if (searchpassword.equals(password)) {
+
+                    DataDatabaseHelper.loadId(db);
+                    readSDFile();
+                    DataDatabaseHelper.readDatabase(db);
+
                     finish();
                     Intent loginIntent = new Intent (LoginActivity.this, MainActivity.class);
                     LoginActivity.this.startActivity(loginIntent);
@@ -79,6 +96,36 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    private void readSDFile() {
+        SimpleModel model = SimpleModel.INSTANCE;
+
+        try {
+            InputStream is = getResources().openRawResource(R.raw.rat_sightings);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+            String line;
+            br.readLine(); //get rid of header line
+            int i = 1;
+            while ((line = br.readLine()) != null && i < 10 ) {
+                i++;
+                Log.d(MainActivity.TAG, line);
+                String[] tokens = line.split(",");
+                if (tokens.length != 51) {
+                    continue;
+                }
+                int id = Integer.parseInt(tokens[0]);
+                if (!model.containsId(id)) {
+                    DataItem item = new DataItem(id, tokens[1], tokens[7], Integer.valueOf(tokens[8]), tokens[9], tokens[16], tokens[23], Float.valueOf(tokens[49]), Float.valueOf(tokens[50]));
+                    DataDatabaseHelper.writeIntoDatabase(db, item);
+                    model.addId(id);
+                }
+            }
+            br.close();
+        } catch (IOException e) {
+            Log.e(MainActivity.TAG, "error reading assets", e);
+        }
     }
 
 
