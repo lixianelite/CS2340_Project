@@ -40,20 +40,10 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
 
     private GoogleMap mMap;
 
-    private DataDatabaseHelper dataDatabaseHelper;
-
-    private SQLiteDatabase db;
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.google_map_activity);
-
-        dataDatabaseHelper = new DataDatabaseHelper(this, "Data.db", null, 1);
-        db = dataDatabaseHelper.getWritableDatabase();
-
-
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
