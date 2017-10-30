@@ -1,10 +1,13 @@
 package cs2340.gatech.edu.m4.activity;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +32,8 @@ import cs2340.gatech.edu.m4.model.SimpleModel;
  * Created by bravado on 10/29/17.
  */
 
-public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCallback{
+public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCallback,
+            GoogleMap.OnInfoWindowLongClickListener{
 
     private GoogleMap mMap;
 
@@ -58,6 +62,7 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
                     .title(String.valueOf(item.getId())).snippet(item.getCreatedDate() + "\n" + item.getAddress()));
         }
         DataItem lastItem = list.get(list.size() - 1);
+        mMap.setOnInfoWindowLongClickListener(this);
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lastItem.getLatitude(), lastItem.getLongitude())));
     }
@@ -83,5 +88,14 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         public View getInfoWindow(Marker marker) {
             return null;
         }
+    }
+
+    @Override
+    public void onInfoWindowLongClick(Marker marker) {
+        int Item_id = Integer.parseInt(marker.getTitle());
+        Log.d("MapDisplayActivity", Item_id + "");
+        Intent intent = new Intent(MapDisplayActivity.this, DataDetailActivity.class);
+        intent.putExtra(DataDetailActivity.ARG_ITEM_ID, Item_id);
+        this.startActivity(intent);
     }
 }
