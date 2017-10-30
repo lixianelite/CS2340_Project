@@ -8,12 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.sql.ClientInfoStatus;
@@ -41,7 +43,6 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
     }
 
     @Override
@@ -54,9 +55,33 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         for (int i = 0; i < list.size(); i++){
             DataItem item = list.get(i);
             mMap.addMarker(new MarkerOptions().position(new LatLng(item.getLatitude(), item.getLongitude()))
-                    .title(String.valueOf(item.getId())).snippet(item.getAddress()));
+                    .title(String.valueOf(item.getId())).snippet(item.getCreatedDate() + "\n" + item.getAddress()));
         }
         DataItem lastItem = list.get(list.size() - 1);
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lastItem.getLatitude(), lastItem.getLongitude())));
+    }
+
+    class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter{
+
+        private final View mContentsView;
+
+        CustomInfoWindowAdapter(){
+            mContentsView = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            TextView tvTitle = ((TextView)mContentsView.findViewById(R.id.title));
+            tvTitle.setText(marker.getTitle());
+            TextView tvSnippet = ((TextView)mContentsView.findViewById(R.id.snippet));
+            tvSnippet.setText(marker.getSnippet());
+            return mContentsView;
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            return null;
+        }
     }
 }

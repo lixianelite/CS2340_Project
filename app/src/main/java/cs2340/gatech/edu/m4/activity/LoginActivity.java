@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
             br.readLine(); //get rid of header line
             int i = 1;
             //Log.d(MainActivity.TAG, i + "");
-            while ((line = br.readLine()) != null && i < 21 ) {
+            while ((line = br.readLine()) != null && i < 10 ) {
                 i++;
                 Log.d(MainActivity.TAG, line);
                 String[] tokens = line.split(",");
