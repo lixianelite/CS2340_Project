@@ -42,7 +42,7 @@ public class DataDetailActivity extends AppCompatActivity {
 
 
 
-        mItem = SimpleModel.INSTANCE.findItemById(item_id);
+        mItem = SimpleModel.INSTANCE.findItemById(Integer.valueOf(item_id));
 
         dkey = (TextView) findViewById(R.id.detail_key);
         ddate = (TextView) findViewById(R.id.detail_date);
