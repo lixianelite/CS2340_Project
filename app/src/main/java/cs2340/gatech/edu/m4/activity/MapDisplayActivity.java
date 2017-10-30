@@ -33,7 +33,8 @@ import cs2340.gatech.edu.m4.model.SimpleModel;
  */
 
 public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCallback,
-            GoogleMap.OnInfoWindowLongClickListener{
+            GoogleMap.OnInfoWindowLongClickListener,
+            GoogleMap.OnMapLongClickListener{
 
     private GoogleMap mMap;
 
@@ -93,9 +94,16 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
     @Override
     public void onInfoWindowLongClick(Marker marker) {
         int Item_id = Integer.parseInt(marker.getTitle());
-        Log.d("MapDisplayActivity", Item_id + "");
         Intent intent = new Intent(MapDisplayActivity.this, DataDetailActivity.class);
         intent.putExtra(DataDetailActivity.ARG_ITEM_ID, Item_id);
         this.startActivity(intent);
+    }
+
+    @Override
+    public void onMapLongClick(LatLng latLng) {
+        double latitude = latLng.latitude;
+        double longitude = latLng.longitude;
+
+
     }
 }
