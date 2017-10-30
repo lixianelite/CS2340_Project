@@ -83,7 +83,6 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
                     pw = cursor.getString(1);
                     break;
                 }
-
             }
             while(cursor.moveToNext());
         }

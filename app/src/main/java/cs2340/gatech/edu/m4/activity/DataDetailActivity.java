@@ -38,7 +38,7 @@ public class DataDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_detail);
 
-        String item_id = getIntent().getStringExtra(ARG_ITEM_ID);
+        int item_id = getIntent().getIntExtra(ARG_ITEM_ID, -1);
 
 
 
