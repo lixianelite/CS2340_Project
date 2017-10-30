@@ -3,6 +3,7 @@ package cs2340.gatech.edu.m4.activity;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -41,11 +42,18 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
 
     private DataDatabaseHelper dataDatabaseHelper;
 
+    private SQLiteDatabase db;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.google_map_activity);
+
+        dataDatabaseHelper = new DataDatabaseHelper(this, "Data.db", null, 1);
+        db = dataDatabaseHelper.getWritableDatabase();
+
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
