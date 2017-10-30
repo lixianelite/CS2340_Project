@@ -17,8 +17,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.sql.ClientInfoStatus;
+import java.util.List;
 
 import cs2340.gatech.edu.m4.*;
+import cs2340.gatech.edu.m4.model.DataItem;
+import cs2340.gatech.edu.m4.model.SimpleModel;
 
 /**
  * Created by bravado on 10/29/17.
@@ -45,9 +48,15 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.setMinZoomPreference(10.0f);
+
+        List<DataItem> list = SimpleModel.INSTANCE.getItems();
+        for (int i = 0; i < list.size(); i++){
+            DataItem item = list.get(i);
+            mMap.addMarker(new MarkerOptions().position(new LatLng(item.getLatitude(), item.getLongitude()))
+                    .title(String.valueOf(item.getId())).snippet(item.getAddress()));
+        }
+        DataItem lastItem = list.get(list.size() - 1);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lastItem.getLatitude(), lastItem.getLongitude())));
     }
 }
