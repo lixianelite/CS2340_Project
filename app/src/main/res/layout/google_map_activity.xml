@@ -47,7 +47,7 @@
         android:layout_alignStart="@+id/dateafter_editText"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="To : MM-DD-YYYY" />
+        android:hint="To : MM-DD-YYYY" />
 
 
 </RelativeLayout>
