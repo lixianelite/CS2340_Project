@@ -27,7 +27,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDGFngF-m_pLcQua1uLmvIxIJYU-36bKSQ"/>
+            android:value="AIzaSyCwyCRAHL6FDF0nHLBHNl1r_615R966qwY"/>
 
         <activity
             android:name=".activity.WelcomeActivity"
@@ -41,10 +41,9 @@
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.DataListActivity" />
-        <activity android:name=".activity.DataDetailActivity" />
         <activity android:name=".activity.ReportActivity"></activity>
         <activity android:name=".activity.MapDisplayActivity"></activity>
+        <activity android:name=".activity.DataDetailActivity"></activity>
     </application>
 
 </manifest>
