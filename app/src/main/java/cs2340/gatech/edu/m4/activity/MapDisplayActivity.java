@@ -48,6 +48,8 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
     private EditText rDateAfterView;
     private EditText rDateBeforeView;
 
+    private Button date_rangeButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,15 +62,36 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         rDateAfterView = (EditText) findViewById(R.id.dateafter_editText);
         rDateBeforeView = (EditText) findViewById(R.id.datebefore_editText);
 
-        Button date_rangeButton = (Button) findViewById(R.id.daterange_button);
+        date_rangeButton = (Button) findViewById(R.id.daterange_button);
 
-        /*date_rangeButton.setOnClickListener(new View.OnClickListener() {
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        mMap.setMinZoomPreference(1.0f);
+
+        List<DataItem> list = SimpleModel.INSTANCE.getItems();
+        for (int i = 0; i < list.size(); i++){
+            DataItem item = list.get(i);
+            mMap.addMarker(new MarkerOptions().position(new LatLng(item.getLatitude(), item.getLongitude()))
+                    .title(String.valueOf(item.getId())).snippet(item.getCreatedDate() + "\n" + item.getAddress()));
+        }
+        DataItem lastItem = list.get(list.size() - 1);
+        mMap.setOnInfoWindowLongClickListener(this);
+        mMap.setOnMapLongClickListener(this);
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lastItem.getLatitude(), lastItem.getLongitude())));
+
+        date_rangeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String rdateafter = rDateAfterView.getText().toString();
                 String rdatebefore = rDateBeforeView.getText().toString();
                 Date dateafter = new Date();
                 Date datebefore = new Date();
+                mMap.clear();
                 try {
                     dateafter = changeDateFormat(rdateafter);
                     datebefore = changeDateFormat(rdatebefore);
@@ -89,28 +112,18 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
                         SimpleModel.INSTANCE.getFilteredList().add(item);
                     }
                 }
+
+                list = SimpleModel.INSTANCE.getFilteredList();
+                Log.d("MapDisplayActivity", list.size() + "");
+                for (int i = 0; i < list.size(); i++){
+                    DataItem item = list.get(i);
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(item.getLatitude(), item.getLongitude()))
+                            .title(String.valueOf(item.getId())).snippet(item.getCreatedDate() + "\n" + item.getAddress()));
+                }
             }
-        });*/
+        });
 
-    }
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        mMap.setMinZoomPreference(10.0f);
-
-        List<DataItem> list = SimpleModel.INSTANCE.getItems();
-        for (int i = 0; i < list.size(); i++){
-            DataItem item = list.get(i);
-            mMap.addMarker(new MarkerOptions().position(new LatLng(item.getLatitude(), item.getLongitude()))
-                    .title(String.valueOf(item.getId())).snippet(item.getCreatedDate() + "\n" + item.getAddress()));
-        }
-        DataItem lastItem = list.get(list.size() - 1);
-        mMap.setOnInfoWindowLongClickListener(this);
-        mMap.setOnMapLongClickListener(this);
-        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lastItem.getLatitude(), lastItem.getLongitude())));
     }
 
     class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter{
