@@ -3,6 +3,8 @@ package cs2340.gatech.edu.m4.activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +18,7 @@ import cs2340.gatech.edu.m4.model.DataItem;
 import cs2340.gatech.edu.m4.model.DataItemAdapter;
 import cs2340.gatech.edu.m4.model.SimpleModel;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     public static String TAG = "MY_APP";
 
 
@@ -28,16 +30,14 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         DataItemAdapter adapter = new DataItemAdapter(SimpleModel.INSTANCE.getItems());
         recyclerView.setAdapter(adapter);
+
+        NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
+
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.report_button:
                 Intent ReportIntent = new Intent(MainActivity.this, ReportActivity.class);
@@ -59,5 +59,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
 }
