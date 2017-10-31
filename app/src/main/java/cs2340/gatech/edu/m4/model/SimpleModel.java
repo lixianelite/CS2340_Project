@@ -16,9 +16,12 @@ public class SimpleModel {
 
     private Set<Integer> idContainer;
 
+    private List<DataItem> filteredList;
+
     private SimpleModel() {
         items = new ArrayList<>();
         idContainer = new HashSet<>();
+        filteredList = new ArrayList<>();
     }
 
     public void addItem(DataItem item) {
@@ -27,6 +30,10 @@ public class SimpleModel {
 
     public List<DataItem> getItems() {
         return items;
+    }
+
+    public List<DataItem> getFilteredList(){
+        return filteredList;
     }
 
     public Set<Integer> getIdContainer(){

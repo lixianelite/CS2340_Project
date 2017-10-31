@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,6 +25,10 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.sql.ClientInfoStatus;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import cs2340.gatech.edu.m4.*;
@@ -39,6 +45,8 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
             GoogleMap.OnMapLongClickListener{
 
     private GoogleMap mMap;
+    private EditText rDateAfterView;
+    private EditText rDateBeforeView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +56,41 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        rDateAfterView = (EditText) findViewById(R.id.dateafter_editText);
+        rDateBeforeView = (EditText) findViewById(R.id.datebefore_editText);
+
+        Button date_rangeButton = (Button) findViewById(R.id.daterange_button);
+
+        /*date_rangeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String rdateafter = rDateAfterView.getText().toString();
+                String rdatebefore = rDateBeforeView.getText().toString();
+                Date dateafter = new Date();
+                Date datebefore = new Date();
+                try {
+                    dateafter = changeDateFormat(rdateafter);
+                    datebefore = changeDateFormat(rdatebefore);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                SimpleModel.INSTANCE.getFilteredList().clear();
+                List<DataItem> list = SimpleModel.INSTANCE.getItems();
+                for (int i = 0; i < list.size(); i++){
+                    DataItem item = list.get(i);
+                    Date created_date = new Date();
+                    try{
+                        created_date = changeDateFormat(item.getCreatedDate());
+                    } catch (ParseException e){
+                        e.printStackTrace();
+                    }
+                    if (created_date.after(dateafter) && created_date.before(datebefore)){
+                        SimpleModel.INSTANCE.getFilteredList().add(item);
+                    }
+                }
+            }
+        });*/
 
     }
 
@@ -112,4 +155,12 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         startActivity(intent);
         finish();
     }
+
+    public Date changeDateFormat(String date) throws ParseException {
+        DateFormat format = new SimpleDateFormat("M/d/yy");
+        Date formateddate = format.parse(date);
+
+        return formateddate;
+    }
+
 }
