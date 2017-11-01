@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent MapDisplay = new Intent(MainActivity.this, MapDisplayActivity.class);
                 MainActivity.this.startActivity(MapDisplay);
                 break;
+            case R.id.menu_chart:
+                Intent ChartDisplay = new Intent(MainActivity.this, ChartActivity.class);
+                MainActivity.this.startActivity(ChartDisplay);
+                break;
             case R.id.logout_button:
                 Intent logoutIntent = new Intent(MainActivity.this, WelcomeActivity.class);
                 SimpleModel.INSTANCE.getItems().clear();

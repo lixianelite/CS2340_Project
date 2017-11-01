@@ -88,7 +88,7 @@ public class DataDatabaseHelper extends SQLiteOpenHelper{
         }
     }
 
-    public static void SynchronizeData(SQLiteDatabase db){
+    /*public static void SynchronizeData(SQLiteDatabase db){
         SimpleModel model = SimpleModel.INSTANCE;
         Cursor cursor = db.query("data", null, null, null, null, null, null);
         if (cursor.moveToFirst()){
@@ -109,7 +109,7 @@ public class DataDatabaseHelper extends SQLiteOpenHelper{
             }while (cursor.moveToNext());
             cursor.close();
         }
-    }
+    }*/
 
 
     public static void loadId(SQLiteDatabase db){

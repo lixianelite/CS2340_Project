@@ -44,6 +44,7 @@
         <activity android:name=".activity.ReportActivity"></activity>
         <activity android:name=".activity.MapDisplayActivity"></activity>
         <activity android:name=".activity.DataDetailActivity"></activity>
+        <activity android:name=".activity.ChartActivity"></activity>
     </application>
 
 </manifest>
