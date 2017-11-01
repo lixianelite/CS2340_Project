@@ -71,6 +71,8 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
+
         String rev_startDate = getIntent().getStringExtra(START_DATE);
         String rev_endDate = getIntent().getStringExtra(END_DATE);
         Date startDate = new Date();
@@ -98,7 +100,7 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
 
         mMap = googleMap;
 
-        mMap.setMinZoomPreference(1.0f);
+        mMap.setMinZoomPreference(10.0f);
 
         //List<DataItem> list = SimpleModel.INSTANCE.getItems();
         list = SimpleModel.INSTANCE.getFilteredList();
