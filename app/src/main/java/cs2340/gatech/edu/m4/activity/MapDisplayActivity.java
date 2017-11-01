@@ -44,6 +44,8 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
             GoogleMap.OnInfoWindowLongClickListener,
             GoogleMap.OnMapLongClickListener{
 
+    public static final String START_DATE = "start_date";
+    public static final String END_DATE = "end_date";
     private GoogleMap mMap;
     private EditText rDateAfterView;
     private EditText rDateBeforeView;
@@ -59,20 +61,47 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        rDateAfterView = (EditText) findViewById(R.id.dateafter_editText);
-        rDateBeforeView = (EditText) findViewById(R.id.datebefore_editText);
 
-        date_rangeButton = (Button) findViewById(R.id.daterange_button);
+        //rDateAfterView = (EditText) findViewById(R.id.dateafter_editText);
+        //rDateBeforeView = (EditText) findViewById(R.id.datebefore_editText);
+
+        //date_rangeButton = (Button) findViewById(R.id.daterange_button);
 
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        String rev_startDate = getIntent().getStringExtra(START_DATE);
+        String rev_endDate = getIntent().getStringExtra(END_DATE);
+        Date startDate = new Date();
+        Date endDate = new Date();
+        try {
+            startDate = changeDateFormat(rev_startDate);
+            endDate = changeDateFormat(rev_endDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleModel.INSTANCE.getFilteredList().clear();
+        List<DataItem> list = SimpleModel.INSTANCE.getItems();
+        for (int i = 0; i < list.size(); i++){
+            DataItem item = list.get(i);
+            Date created_date = new Date();
+            try{
+                created_date = changeDateFormat(item.getCreatedDate());
+            } catch (ParseException e){
+                e.printStackTrace();
+            }
+            if (created_date.after(startDate) && created_date.before(endDate)){
+                SimpleModel.INSTANCE.getFilteredList().add(item);
+            }
+        }
+
         mMap = googleMap;
 
         mMap.setMinZoomPreference(1.0f);
 
-        List<DataItem> list = SimpleModel.INSTANCE.getItems();
+        //List<DataItem> list = SimpleModel.INSTANCE.getItems();
+        list = SimpleModel.INSTANCE.getFilteredList();
         for (int i = 0; i < list.size(); i++){
             DataItem item = list.get(i);
             mMap.addMarker(new MarkerOptions().position(new LatLng(item.getLatitude(), item.getLongitude()))
@@ -84,7 +113,7 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lastItem.getLatitude(), lastItem.getLongitude())));
 
-        date_rangeButton.setOnClickListener(new View.OnClickListener() {
+        /*date_rangeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String rdateafter = rDateAfterView.getText().toString();
@@ -121,7 +150,7 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
                             .title(String.valueOf(item.getId())).snippet(item.getCreatedDate() + "\n" + item.getAddress()));
                 }
             }
-        });
+        });*/
 
 
     }

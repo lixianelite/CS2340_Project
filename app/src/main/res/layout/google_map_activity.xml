@@ -1,10 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-
 
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
@@ -17,37 +10,4 @@
     android:layout_alignParentTop="true"
     tools:context="cs2340.gatech.edu.m4.activity.MapDisplayActivity" />
 
-    <Button
-        android:id="@+id/daterange_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/dateafter_editText"
-        android:layout_marginTop="17dp"
-        android:background="#359c5e"
-        android:padding="8dp"
-        android:text="go"
-        android:textColor="#ffffff" />
 
-    <EditText
-        android:id="@+id/dateafter_editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="17dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="From : MM-DD-YYYY"/>
-
-    <EditText
-        android:id="@+id/datebefore_editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/daterange_button"
-        android:layout_alignStart="@+id/dateafter_editText"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="To : MM-DD-YYYY" />
-
-
-</RelativeLayout>
