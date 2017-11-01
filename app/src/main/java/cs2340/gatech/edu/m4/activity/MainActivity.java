@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
 
         navigationView.setNavigationItemSelectedListener(this);
-
     }
 
     @Override
@@ -61,11 +60,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 LinearLayout layout = new LinearLayout(context);
                 layout.setOrientation(LinearLayout.VERTICAL);
                 final EditText startDate = new EditText(context);
-                startDate.setHint("Enter StartDate");
+                startDate.setHint("Enter StartDate: MM/DD/YY");
                 layout.addView(startDate);
 
                 final EditText endDate = new EditText(context);
-                endDate.setHint("Enter EndDate");
+                endDate.setHint("Enter EndDate: MM/DD/YY");
                 layout.addView(endDate);
 
                 alertDialog.setView(layout);
@@ -87,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     Toast.makeText(getApplicationContext(),
                                             "Date cannot be empty!", Toast.LENGTH_SHORT).show();
                                 }
-
                             }
                         });
 
