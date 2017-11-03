@@ -12,5 +12,4 @@ public class SamplePoint {
         this.x = px;
         this.y = py;
     }
-
 }
