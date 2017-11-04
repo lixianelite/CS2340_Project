@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import java.util.Random;
 
 import cs2340.gatech.edu.m4.R;
@@ -58,27 +60,17 @@ public class ReportActivity extends AppCompatActivity {
         report_cancelButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent report_cancelIntent = new Intent(ReportActivity.this, MainActivity.class);
-                ReportActivity.this.startActivity(report_cancelIntent);
                 finish();
             }
         });
-
 
 
         Button report_writeButton = (Button) findViewById(R.id.report_write_button);
         report_writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 WriteData();
-
-                Intent report_writeIntent;
-
-                report_writeIntent = receivedClassName.equals("MapDisplayActivity") ?
-                        new Intent(ReportActivity.this, MapDisplayActivity.class):
-                        new Intent(ReportActivity.this, MainActivity.class);
-                ReportActivity.this.startActivity(report_writeIntent);
+                Toast.makeText(ReportActivity.this, "Reported the rat sightseeing! Good Job!", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -101,10 +93,24 @@ public class ReportActivity extends AppCompatActivity {
             genId = 10000000 + random.nextInt(90000000);
         }
 
+        String date = dateText.getText().toString();
+
+        Log.d("ReportActivity", date);
+        date = TransformDate(date);
+        Log.d("ReportActivity", date);
+
         DataItem data = new DataItem(genId, dateText.getText().toString(), locationText.getText().toString(), Integer.valueOf(zipText.getText().toString()), addressText.getText().toString(), cityText.getText().toString(), boroughText.getText().toString(), Float.valueOf(latitudeText.getText().toString()), Float.valueOf(longitudeText.getText().toString()));
         model.addItem(data);
         model.addId(genId);
         DataDatabaseHelper.writeIntoDatabase(db, data);
+    }
+
+    private String TransformDate(String rawDate){
+        String[] date = rawDate.split("/");
+        int year = Integer.parseInt(date[2]);
+        int month = Integer.parseInt(date[0]);
+        int day = Integer.parseInt(date[1]);
+        return month + "/" + day + "/" + year + " 00:00";
     }
 
 }

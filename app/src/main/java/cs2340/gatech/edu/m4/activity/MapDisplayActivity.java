@@ -61,7 +61,6 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
     }
 
     @Override
@@ -70,6 +69,8 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
 
         String rev_startDate = getIntent().getStringExtra(START_DATE);
         String rev_endDate = getIntent().getStringExtra(END_DATE);
+        Log.d("OnMapReady", rev_startDate);
+        Log.d("OnMapReady", rev_endDate);
         Date startDate = new Date();
         Date endDate = new Date();
         try {
@@ -95,7 +96,7 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
 
         mMap = googleMap;
 
-        mMap.setMinZoomPreference(10.0f);
+        mMap.setMinZoomPreference(5.0f);
 
         //List<DataItem> list = SimpleModel.INSTANCE.getItems();
         list = SimpleModel.INSTANCE.getFilteredList();
@@ -104,12 +105,13 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
             mMap.addMarker(new MarkerOptions().position(new LatLng(item.getLatitude(), item.getLongitude()))
                     .title(String.valueOf(item.getId())).snippet(item.getCreatedDate() + "\n" + item.getAddress()));
         }
-        DataItem lastItem = list.get(list.size() - 1);
+
         mMap.setOnInfoWindowLongClickListener(this);
         mMap.setOnMapLongClickListener(this);
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lastItem.getLatitude(), lastItem.getLongitude())));
-
+        LatLng cameraPoint = list.isEmpty() ? new LatLng(40.67, -73.99) : new LatLng(list.get(list.size() - 1). getLatitude(),
+                list.get(list.size() - 1). getLongitude());
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(cameraPoint));
 
 
 
@@ -155,7 +157,6 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         intent.putExtra("latitude", latitude);
         intent.putExtra("longitude", longitude);
         startActivity(intent);
-        finish();
     }
 
     public Date changeDateFormat(String date) throws ParseException {
@@ -166,3 +167,49 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
     }
 
 }
+
+
+
+
+
+
+
+/*date_rangeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String rdateafter = rDateAfterView.getText().toString();
+                String rdatebefore = rDateBeforeView.getText().toString();
+                Date dateafter = new Date();
+                Date datebefore = new Date();
+                mMap.clear();
+                try {
+                    dateafter = changeDateFormat(rdateafter);
+                    datebefore = changeDateFormat(rdatebefore);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                SimpleModel.INSTANCE.getFilteredList().clear();
+                List<DataItem> list = SimpleModel.INSTANCE.getItems();
+                for (int i = 0; i < list.size(); i++){
+                    DataItem item = list.get(i);
+                    Date created_date = new Date();
+                    try{
+                        created_date = changeDateFormat(item.getCreatedDate());
+                    } catch (ParseException e){
+                        e.printStackTrace();
+                    }
+                    if (created_date.after(dateafter) && created_date.before(datebefore)){
+                        SimpleModel.INSTANCE.getFilteredList().add(item);
+                    }
+                }
+
+                list = SimpleModel.INSTANCE.getFilteredList();
+                Log.d("MapDisplayActivity", list.size() + "");
+                for (int i = 0; i < list.size(); i++){
+                    DataItem item = list.get(i);
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(item.getLatitude(), item.getLongitude()))
+                            .title(String.valueOf(item.getId())).snippet(item.getCreatedDate() + "\n" + item.getAddress()));
+                }
+            }
+        });*/
+
