@@ -58,56 +58,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 MainActivity.this.startActivity(ReportIntent);
                 break;
             case R.id.map_display:
-
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-                alertDialog.setTitle("Select Date Range");
-                Context context = MainActivity.this;
-                LinearLayout layout = new LinearLayout(context);
-                layout.setOrientation(LinearLayout.VERTICAL);
-                final EditText startDate = new EditText(context);
-                startDate.setHint("Enter StartDate: MM/DD/YY");
-                layout.addView(startDate);
-
-                final EditText endDate = new EditText(context);
-                endDate.setHint("Enter EndDate: MM/DD/YY");
-                layout.addView(endDate);
-
-                alertDialog.setView(layout);
-
-                alertDialog.setPositiveButton("Go",
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick (DialogInterface dialogInterface, int i) {
-                                String sdText = startDate.getText().toString();
-                                String edText = endDate.getText().toString();
-                                if (sdText != null && !sdText.isEmpty() && edText != null && !edText.isEmpty()){
-                                    Intent MapDisplay = new Intent(MainActivity.this, MapDisplayActivity.class);
-                                    MapDisplay.putExtra(MapDisplayActivity.START_DATE, sdText);
-                                    MapDisplay.putExtra(MapDisplayActivity.END_DATE, edText);
-                                    MainActivity.this.startActivity(MapDisplay);
-                                }
-                                else{
-                                    Toast.makeText(getApplicationContext(),
-                                            "Date cannot be empty!", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-
-                alertDialog.setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.cancel();
-                            }
-                        });
-                alertDialog.show();
+                AlertDialog.Builder dialog = getAlertDialog();
+                dialog.show();
                 break;
             case R.id.menu_chart:
                 Intent ChartDisplay = new Intent(MainActivity.this, ChartActivity.class);
                 MainActivity.this.startActivity(ChartDisplay);
-                filterProcess("09/03/15", "09/10/15");
+                filterProcess("09/03/15", "09/14/15");
                 break;
 
             case R.id.logout_button:
@@ -187,6 +144,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         float standardDate = Mon + (float)Day / 100;
         return String.valueOf(standardDate);
     }
+
+
+    private AlertDialog.Builder getAlertDialog(){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        alertDialog.setTitle("Select Date Range");
+        Context context = MainActivity.this;
+        LinearLayout layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        final EditText startDate = new EditText(context);
+        startDate.setHint("Enter StartDate: MM/DD/YY");
+        layout.addView(startDate);
+
+        final EditText endDate = new EditText(context);
+        endDate.setHint("Enter EndDate: MM/DD/YY");
+        layout.addView(endDate);
+
+        alertDialog.setView(layout);
+
+        alertDialog.setPositiveButton("Go",
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick (DialogInterface dialogInterface, int i) {
+                        String sdText = startDate.getText().toString();
+                        String edText = endDate.getText().toString();
+                        if (sdText != null && !sdText.isEmpty() && edText != null && !edText.isEmpty()){
+                            Intent MapDisplay = new Intent(MainActivity.this, MapDisplayActivity.class);
+                            MapDisplay.putExtra(MapDisplayActivity.START_DATE, sdText);
+                            MapDisplay.putExtra(MapDisplayActivity.END_DATE, edText);
+                            MainActivity.this.startActivity(MapDisplay);
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(),
+                                    "Date cannot be empty!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+        alertDialog.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+        return alertDialog;
+    }
+
 
 
 }

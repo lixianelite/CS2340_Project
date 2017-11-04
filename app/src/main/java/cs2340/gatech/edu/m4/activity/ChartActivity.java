@@ -14,13 +14,10 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import cs2340.gatech.edu.m4.R;
-import cs2340.gatech.edu.m4.model.DataItem;
-import cs2340.gatech.edu.m4.model.SamplePoint;
 import cs2340.gatech.edu.m4.model.SimpleModel;
 
 /**
@@ -28,8 +25,6 @@ import cs2340.gatech.edu.m4.model.SimpleModel;
  */
 
 public class ChartActivity extends AppCompatActivity{
-
-    private dataSetExample data = new dataSetExample();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

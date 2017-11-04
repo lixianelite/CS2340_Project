@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="cs2340.gatech.edu.m4.activity.WelcomeActivity">
 
     <Button
@@ -43,14 +44,14 @@
         android:id="@+id/textView"
         android:layout_width="273dp"
         android:layout_height="85dp"
+        android:layout_gravity="center_horizontal"
         android:text="Welcome"
         android:textSize="50dp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="52dp"
+
         tools:layout_editor_absoluteX="55dp" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
