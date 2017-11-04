@@ -15,15 +15,20 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.data.Entry;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import cs2340.gatech.edu.m4.R;
@@ -34,6 +39,8 @@ import cs2340.gatech.edu.m4.model.SimpleModel;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     public static String TAG = "MY_APP";
+    //public String sdText;
+    //public String edText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,14 +160,69 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LinearLayout layout = new LinearLayout(context);
         layout.setOrientation(LinearLayout.VERTICAL);
         final EditText startDate = new EditText(context);
+        startDate.setClickable(true);
+        startDate.setFocusable(false);
         startDate.setHint("Enter StartDate: MM/DD/YY");
         layout.addView(startDate);
 
         final EditText endDate = new EditText(context);
+        endDate.setClickable(true);
+        endDate.setFocusable(false);
         endDate.setHint("Enter EndDate: MM/DD/YY");
         layout.addView(endDate);
 
         alertDialog.setView(layout);
+
+        final Calendar myCalendar = Calendar.getInstance();
+        final String dateFormat = "MM/dd/yy";
+
+        final DatePickerDialog.OnDateSetListener start_date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, month);
+                myCalendar.set(Calendar.DAY_OF_MONTH, day);
+                SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
+                startDate.setText(sdf.format(myCalendar.getTime()));
+                //sdText = sdf.format(myCalendar.getTime());
+            }
+
+        };
+
+        startDate.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(MainActivity.this, start_date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        final DatePickerDialog.OnDateSetListener end_date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, month);
+                myCalendar.set(Calendar.DAY_OF_MONTH, day);
+                SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
+                endDate.setText(sdf.format(myCalendar.getTime()));
+                //edText = sdf.format(myCalendar.getTime());
+            }
+
+        };
+
+        endDate.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(MainActivity.this, end_date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
 
         alertDialog.setPositiveButton("Go",
                 new DialogInterface.OnClickListener() {
