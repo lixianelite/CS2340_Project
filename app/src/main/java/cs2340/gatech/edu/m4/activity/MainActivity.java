@@ -15,9 +15,15 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import cs2340.gatech.edu.m4.R;
 import cs2340.gatech.edu.m4.model.DataDatabaseHelper;
@@ -27,6 +33,8 @@ import cs2340.gatech.edu.m4.model.SimpleModel;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     public static String TAG = "MY_APP";
+    public String sdText;
+    public String edText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +59,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 MainActivity.this.startActivity(ReportIntent);
                 break;
             case R.id.map_display:
-                //Intent MapDisplay = new Intent(MainActivity.this, MapDisplayActivity.class);
-                //MainActivity.this.startActivity(MapDisplay);
-                //break;
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
                 alertDialog.setTitle("Select Date Range");
                 Context context = MainActivity.this;
@@ -61,21 +66,77 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 layout.setOrientation(LinearLayout.VERTICAL);
                 final EditText startDate = new EditText(context);
                 startDate.setHint("Enter StartDate: MM/DD/YY");
+                startDate.setClickable(true);
+                startDate.setFocusable(false);
                 layout.addView(startDate);
 
                 final EditText endDate = new EditText(context);
                 endDate.setHint("Enter EndDate: MM/DD/YY");
+                startDate.setClickable(true);
+                startDate.setFocusable(false);
                 layout.addView(endDate);
 
                 alertDialog.setView(layout);
+
+                final Calendar myCalendar = Calendar.getInstance();
+                final String dateFormat = "MM/dd/yy";
+
+                final DatePickerDialog.OnDateSetListener start_date = new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        myCalendar.set(Calendar.YEAR, year);
+                        myCalendar.set(Calendar.MONTH, month);
+                        myCalendar.set(Calendar.DAY_OF_MONTH, day);
+                        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
+                        startDate.setText(sdf.format(myCalendar.getTime()));
+                        sdText = sdf.format(myCalendar.getTime());
+                    }
+
+                };
+
+                startDate.setOnClickListener(new View.OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(MainActivity.this, start_date, myCalendar
+                                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
+
+                final DatePickerDialog.OnDateSetListener end_date = new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        myCalendar.set(Calendar.YEAR, year);
+                        myCalendar.set(Calendar.MONTH, month);
+                        myCalendar.set(Calendar.DAY_OF_MONTH, day);
+                        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
+                        endDate.setText(sdf.format(myCalendar.getTime()));
+                        edText = sdf.format(myCalendar.getTime());
+                    }
+
+                };
+
+                endDate.setOnClickListener(new View.OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        new DatePickerDialog(MainActivity.this, end_date, myCalendar
+                                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                    }
+                });
+
 
                 alertDialog.setPositiveButton("Go",
                         new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                String sdText = startDate.getText().toString();
-                                String edText = endDate.getText().toString();
+                               //String sdText = startDate.getText().toString();
+                               //String edText = endDate.getText().toString();
                                 if (sdText != null && !sdText.isEmpty() && edText != null && !edText.isEmpty()){
                                     Intent MapDisplay = new Intent(MainActivity.this, MapDisplayActivity.class);
                                     MapDisplay.putExtra(MapDisplayActivity.START_DATE, sdText);

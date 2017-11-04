@@ -62,11 +62,6 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         mapFragment.getMapAsync(this);
 
 
-        //rDateAfterView = (EditText) findViewById(R.id.dateafter_editText);
-        //rDateBeforeView = (EditText) findViewById(R.id.datebefore_editText);
-
-        //date_rangeButton = (Button) findViewById(R.id.daterange_button);
-
     }
 
     @Override
@@ -115,44 +110,7 @@ public class MapDisplayActivity extends FragmentActivity implements OnMapReadyCa
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lastItem.getLatitude(), lastItem.getLongitude())));
 
-        /*date_rangeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String rdateafter = rDateAfterView.getText().toString();
-                String rdatebefore = rDateBeforeView.getText().toString();
-                Date dateafter = new Date();
-                Date datebefore = new Date();
-                mMap.clear();
-                try {
-                    dateafter = changeDateFormat(rdateafter);
-                    datebefore = changeDateFormat(rdatebefore);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                SimpleModel.INSTANCE.getFilteredList().clear();
-                List<DataItem> list = SimpleModel.INSTANCE.getItems();
-                for (int i = 0; i < list.size(); i++){
-                    DataItem item = list.get(i);
-                    Date created_date = new Date();
-                    try{
-                        created_date = changeDateFormat(item.getCreatedDate());
-                    } catch (ParseException e){
-                        e.printStackTrace();
-                    }
-                    if (created_date.after(dateafter) && created_date.before(datebefore)){
-                        SimpleModel.INSTANCE.getFilteredList().add(item);
-                    }
-                }
 
-                list = SimpleModel.INSTANCE.getFilteredList();
-                Log.d("MapDisplayActivity", list.size() + "");
-                for (int i = 0; i < list.size(); i++){
-                    DataItem item = list.get(i);
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(item.getLatitude(), item.getLongitude()))
-                            .title(String.valueOf(item.getId())).snippet(item.getCreatedDate() + "\n" + item.getAddress()));
-                }
-            }
-        });*/
 
 
     }
