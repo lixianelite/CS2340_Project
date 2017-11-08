@@ -88,30 +88,6 @@ public class DataDatabaseHelper extends SQLiteOpenHelper{
         }
     }
 
-    /*public static void SynchronizeData(SQLiteDatabase db){
-        SimpleModel model = SimpleModel.INSTANCE;
-        Cursor cursor = db.query("data", null, null, null, null, null, null);
-        if (cursor.moveToFirst()){
-            do{
-                int id = cursor.getInt(cursor.getColumnIndex("id"));
-                if (model.containsId(id)) continue;
-                String date = cursor.getString(cursor.getColumnIndex("date"));
-                String location_type = cursor.getString(cursor.getColumnIndex("location_type"));
-                int zip = cursor.getInt(cursor.getColumnIndex("zip"));
-                String address = cursor.getString(cursor.getColumnIndex("address"));
-                String city = cursor.getString(cursor.getColumnIndex("city"));
-                String borough = cursor.getString(cursor.getColumnIndex("borough"));
-                float latitude = cursor.getFloat(cursor.getColumnIndex("latitude"));
-                float longitude = cursor.getFloat(cursor.getColumnIndex("longitude"));
-                DataItem item = new DataItem(id, date, location_type, zip, address, city, borough, latitude, longitude);
-                model.addItem(item);
-                model.addId(id);
-            }while (cursor.moveToNext());
-            cursor.close();
-        }
-    }*/
-
-
     public static void loadId(SQLiteDatabase db){
         SimpleModel model = SimpleModel.INSTANCE;
         Cursor cursor = db.query("data", new String[]{"id"}, null, null, null, null, null);
