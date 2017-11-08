@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
@@ -25,7 +24,6 @@ import com.github.mikephil.charting.data.Entry;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -39,8 +37,6 @@ import cs2340.gatech.edu.m4.model.SimpleModel;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     public static String TAG = "MY_APP";
-    //public String sdText;
-    //public String edText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +61,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 MainActivity.this.startActivity(ReportIntent);
                 break;
             case R.id.map_display:
-                AlertDialog.Builder dialog = getAlertDialog();
+                AlertDialog.Builder dialog = getAlertDialog("map_display");
                 dialog.show();
                 break;
             case R.id.menu_chart:
-                Intent ChartDisplay = new Intent(MainActivity.this, ChartActivity.class);
-                MainActivity.this.startActivity(ChartDisplay);
-                filterProcess("09/03/15", "09/14/15");
+                AlertDialog.Builder dialog1 = getAlertDialog("chart_display");
+                dialog1.show();
                 break;
 
             case R.id.logout_button:
@@ -153,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    private AlertDialog.Builder getAlertDialog(){
+    private AlertDialog.Builder getAlertDialog(final String choice){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setTitle("Select Date Range");
         Context context = MainActivity.this;
@@ -184,7 +179,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 myCalendar.set(Calendar.DAY_OF_MONTH, day);
                 SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
                 startDate.setText(sdf.format(myCalendar.getTime()));
-                //sdText = sdf.format(myCalendar.getTime());
             }
 
         };
@@ -208,7 +202,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 myCalendar.set(Calendar.DAY_OF_MONTH, day);
                 SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
                 endDate.setText(sdf.format(myCalendar.getTime()));
-                //edText = sdf.format(myCalendar.getTime());
             }
 
         };
@@ -232,10 +225,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         String sdText = startDate.getText().toString();
                         String edText = endDate.getText().toString();
                         if (sdText != null && !sdText.isEmpty() && edText != null && !edText.isEmpty()){
-                            Intent MapDisplay = new Intent(MainActivity.this, MapDisplayActivity.class);
-                            MapDisplay.putExtra(MapDisplayActivity.START_DATE, sdText);
-                            MapDisplay.putExtra(MapDisplayActivity.END_DATE, edText);
-                            MainActivity.this.startActivity(MapDisplay);
+                            if (choice.equals("map_display")){
+                                Intent MapDisplay = new Intent(MainActivity.this, MapDisplayActivity.class);
+                                MapDisplay.putExtra(MapDisplayActivity.START_DATE, sdText);
+                                MapDisplay.putExtra(MapDisplayActivity.END_DATE, edText);
+                                MainActivity.this.startActivity(MapDisplay);
+                            }else if (choice.equals("chart_display")){
+                                Intent ChartDisplay = new Intent(MainActivity.this, ChartActivity.class);
+                                MainActivity.this.startActivity(ChartDisplay);
+                                filterProcess(sdText, edText);
+                                //filterProcess("09/03/15", "09/14/15");
+                            }
                         }
                         else{
                             Toast.makeText(getApplicationContext(),
@@ -254,7 +254,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 });
         return alertDialog;
     }
-
-
 
 }
