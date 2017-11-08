@@ -88,29 +88,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Map<Integer, String> formatMap = SimpleModel.INSTANCE.getFormatMap();
         String[] startArray = startDate.split("/");
         String[] endArray = endDate.split("/");
+
         int startMon = Integer.parseInt(startArray[0]);
 
-
-        int startDay = Integer.parseInt(startArray[1]);
+        int startYear = Integer.parseInt(startArray[2]);
 
         int endMon = Integer.parseInt(endArray[0]);
 
-        int endDay = Integer.parseInt(endArray[1]);
+        int endYear = Integer.parseInt(endArray[2]);
 
-        int months = Math.max(0, endMon - startMon - 1);
+        int years = Math.max(0, endYear - startYear - 1);
 
 
-        int times = startMon != endMon ? 32 - startDay + endDay + months * 31 : endDay - startDay + 1;
+        int times = startYear != endYear ? 13 - startMon + endMon + years * 12 : endMon - startMon + 1;
 
 
         HashMap<String, Integer> map = new HashMap<>();
 
         for (int i = 0; i < times; i++){
-            int dateMon = startMon + (startDay + i) / 32;
-            int dateDay = (startDay - 1 + i) % 31 + 1;
-            float standardDate = dateMon + (float)dateDay / 100;
+            int dateYear = startYear + (startMon + i) / 13;
+            int dateMon = (startMon - 1 + i) % 12 + 1;
+
+
+            float standardDate = dateYear + (float)dateMon / 100;
             map.put(String.valueOf(standardDate), 0);
-            String formatDate = dateMon + "." + dateDay;
+            String formatDate = dateYear + "." + dateMon;
             formatMap.put(i, formatDate);
         }
 
@@ -121,14 +123,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
 
+        for (Map.Entry<Integer, String> entry : formatMap.entrySet()){
+            Log.d("filterProcess", "key: " + entry.getKey() + " value: " + entry.getValue());
+        }
+
         for (int i = 0; i < times; i++){
-            int dateMon = startMon + (startDay + i) / 32;
-            int dateDay = (startDay - 1 + i) % 31 + 1;
-            float standardDate = dateMon + (float)dateDay / 100;
+            int dateYear = startYear + (startMon + i) / 13;
+            int dateMon = (startMon - 1 + i) % 12 + 1;
+            float standardDate = dateYear + (float)dateMon / 100;
+            Log.d("filterProcess", "standardDate: " + standardDate);
             int count = map.get(String.valueOf(standardDate));
-
-            Log.d("filterProcess", "standardDate " + standardDate);
-
 
             SimpleModel.INSTANCE.addEntry(new Entry(i, count));
         }
@@ -140,12 +144,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String[] subDate = date[2].split(" ");
 
         int Mon = Integer.parseInt(date[0]);
-        int Day = Integer.parseInt(date[1]);
+        int Year = Integer.parseInt(subDate[0]);
 
 
-        float standardDate = Mon + (float)Day / 100;
+        float standardDate = Year + (float)Mon / 100;
         return String.valueOf(standardDate);
     }
+
+
+
+
+
+
 
 
     private AlertDialog.Builder getAlertDialog(final String choice){
