@@ -68,7 +68,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 AlertDialog.Builder dialog1 = getAlertDialog("chart_display");
                 dialog1.show();
                 break;
-
+            case R.id.heat_map:
+                AlertDialog.Builder dialog2 = getAlertDialog("heatmap_display");
+                dialog2.show();
             case R.id.logout_button:
                 Intent logoutIntent = new Intent(MainActivity.this, WelcomeActivity.class);
                 SimpleModel.INSTANCE.getItems().clear();
@@ -152,12 +154,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
-
-
-
-
-
     private AlertDialog.Builder getAlertDialog(final String choice){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setTitle("Select Date Range");
@@ -236,15 +232,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         String edText = endDate.getText().toString();
                         if (sdText != null && !sdText.isEmpty() && edText != null && !edText.isEmpty()){
                             if (choice.equals("map_display")){
-                                Intent MapDisplay = new Intent(MainActivity.this, MapDisplayActivity.class);
-                                MapDisplay.putExtra(MapDisplayActivity.START_DATE, sdText);
-                                MapDisplay.putExtra(MapDisplayActivity.END_DATE, edText);
+                                Intent MapDisplay = new Intent(MainActivity.this, MapDisplayActivityRefine.class);
+                                MapDisplay.putExtra(MapDisplayActivityRefine.START_DATE, sdText);
+                                MapDisplay.putExtra(MapDisplayActivityRefine.END_DATE, edText);
                                 MainActivity.this.startActivity(MapDisplay);
                             }else if (choice.equals("chart_display")){
                                 Intent ChartDisplay = new Intent(MainActivity.this, ChartActivity.class);
                                 MainActivity.this.startActivity(ChartDisplay);
                                 filterProcess(sdText, edText);
-                                //filterProcess("09/03/15", "09/14/15");
+                            }else if (choice.equals("heatmap_display")){
+                                Intent HeatMapDisplay = new Intent(MainActivity.this, ChartActivity.class);
+                                HeatMapDisplay.putExtra(MapDisplayActivityRefine.START_DATE, sdText);
+                                HeatMapDisplay.putExtra(MapDisplayActivityRefine.END_DATE, edText);
+                                MainActivity.this.startActivity(HeatMapDisplay);
                             }
                         }
                         else{

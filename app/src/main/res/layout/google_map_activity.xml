@@ -8,6 +8,6 @@
     android:layout_height="match_parent"
     android:layout_alignParentStart="true"
     android:layout_alignParentTop="true"
-    tools:context="cs2340.gatech.edu.m4.activity.MapDisplayActivity" />
+    tools:context="cs2340.gatech.edu.m4.activity.BaseMapActivity" />
 
 

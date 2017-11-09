@@ -9,6 +9,10 @@
         android:title="Google Map Display" />
 
     <item
+        android:id="@+id/heat_map"
+        android:title="HeatMap Display"/>
+
+    <item
         android:id="@+id/menu_chart"
         android:title="History Chart Display"/>
 
