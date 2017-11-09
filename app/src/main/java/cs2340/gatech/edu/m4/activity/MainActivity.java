@@ -4,8 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AlertDialog;
@@ -22,8 +20,11 @@ import android.widget.Toast;
 
 import com.github.mikephil.charting.data.Entry;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -71,6 +72,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.heat_map:
                 AlertDialog.Builder dialog2 = getAlertDialog("heatmap_display");
                 dialog2.show();
+                break;
+            case R.id.cluster_map:
+                AlertDialog.Builder dialog3 = getAlertDialog("cluster_display");
+                dialog3.show();
+                break;
             case R.id.logout_button:
                 Intent logoutIntent = new Intent(MainActivity.this, WelcomeActivity.class);
                 SimpleModel.INSTANCE.getItems().clear();
@@ -92,15 +98,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String[] endArray = endDate.split("/");
 
         int startMon = Integer.parseInt(startArray[0]);
-
         int startYear = Integer.parseInt(startArray[2]);
-
         int endMon = Integer.parseInt(endArray[0]);
-
         int endYear = Integer.parseInt(endArray[2]);
-
         int years = Math.max(0, endYear - startYear - 1);
-
 
         int times = startYear != endYear ? 13 - startMon + endMon + years * 12 : endMon - startMon + 1;
 
@@ -125,20 +126,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
 
-        for (Map.Entry<Integer, String> entry : formatMap.entrySet()){
-            Log.d("filterProcess", "key: " + entry.getKey() + " value: " + entry.getValue());
-        }
-
         for (int i = 0; i < times; i++){
             int dateYear = startYear + (startMon + i) / 13;
             int dateMon = (startMon - 1 + i) % 12 + 1;
             float standardDate = dateYear + (float)dateMon / 100;
-            Log.d("filterProcess", "standardDate: " + standardDate);
             int count = map.get(String.valueOf(standardDate));
 
             SimpleModel.INSTANCE.addEntry(new Entry(i, count));
         }
-
     }
 
     private String Transform(String rawDate){
@@ -230,24 +225,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     public void onClick (DialogInterface dialogInterface, int i) {
                         String sdText = startDate.getText().toString();
                         String edText = endDate.getText().toString();
+
                         if (sdText != null && !sdText.isEmpty() && edText != null && !edText.isEmpty()){
                             if (choice.equals("map_display")){
                                 Intent MapDisplay = new Intent(MainActivity.this, MapDisplayActivityRefine.class);
-                                MapDisplay.putExtra(MapDisplayActivityRefine.START_DATE, sdText);
-                                MapDisplay.putExtra(MapDisplayActivityRefine.END_DATE, edText);
                                 MainActivity.this.startActivity(MapDisplay);
+                                filtering(sdText, edText);
                             }else if (choice.equals("chart_display")){
                                 Intent ChartDisplay = new Intent(MainActivity.this, ChartActivity.class);
                                 MainActivity.this.startActivity(ChartDisplay);
                                 filterProcess(sdText, edText);
                             }else if (choice.equals("heatmap_display")){
-                                Intent HeatMapDisplay = new Intent(MainActivity.this, ChartActivity.class);
-                                HeatMapDisplay.putExtra(MapDisplayActivityRefine.START_DATE, sdText);
-                                HeatMapDisplay.putExtra(MapDisplayActivityRefine.END_DATE, edText);
+                                Intent HeatMapDisplay = new Intent(MainActivity.this, HeatMapActivity.class);
+                                filtering(sdText, edText);
                                 MainActivity.this.startActivity(HeatMapDisplay);
+                            }else if (choice.equals("cluster_display")){
+                                Intent ClusterMapDisplay = new Intent(MainActivity.this, ClusterMapActivity.class);
+                                filtering(sdText, edText);
+                                MainActivity.this.startActivity(ClusterMapDisplay);
                             }
-                        }
-                        else{
+                        } else{
                             Toast.makeText(getApplicationContext(),
                                     "Date cannot be empty!", Toast.LENGTH_SHORT).show();
                         }
@@ -263,6 +260,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
         return alertDialog;
+    }
+
+
+    private static Date changeDateFormat(String date) throws ParseException {
+        DateFormat format = new SimpleDateFormat("M/d/yy");
+        Date formateddate = format.parse(date);
+
+        return formateddate;
+    }
+
+    private void filtering(String start_date, String end_date){
+        Date startDate = new Date();
+        Date endDate = new Date();
+        try {
+            startDate = changeDateFormat(start_date);
+            endDate = changeDateFormat(end_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleModel.INSTANCE.getFilteredList().clear();
+        List<DataItem> list = SimpleModel.INSTANCE.getItems();
+        for (DataItem item : list){
+            Date created_date = new Date();
+            try{
+                created_date = changeDateFormat(item.getCreatedDate());
+            } catch (ParseException e){
+                e.printStackTrace();
+            }
+            if (created_date.after(startDate) && created_date.before(endDate)){
+                SimpleModel.INSTANCE.getFilteredList().add(item);
+            }
+        }
     }
 
 }
