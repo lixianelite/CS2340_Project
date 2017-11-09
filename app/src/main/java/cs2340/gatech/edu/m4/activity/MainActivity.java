@@ -228,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                         if (sdText != null && !sdText.isEmpty() && edText != null && !edText.isEmpty()){
                             if (choice.equals("map_display")){
-                                Intent MapDisplay = new Intent(MainActivity.this, MapDisplayActivityRefine.class);
+                                Intent MapDisplay = new Intent(MainActivity.this, MapDisplayActivity.class);
                                 MainActivity.this.startActivity(MapDisplay);
                                 filtering(sdText, edText);
                             }else if (choice.equals("chart_display")){

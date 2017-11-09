@@ -22,7 +22,6 @@ public abstract class BaseMapActivity extends FragmentActivity implements OnMapR
         super.onCreate(savedInstanceState);
         setContentView(R.layout.google_map_activity);
         setUpMap();
-
     }
 
     @Override
