@@ -13,6 +13,10 @@
         android:title="HeatMap Display"/>
 
     <item
+        android:id="@+id/cluster_map"
+        android:title="Clustering Display"/>
+
+    <item
         android:id="@+id/menu_chart"
         android:title="History Chart Display"/>
 
