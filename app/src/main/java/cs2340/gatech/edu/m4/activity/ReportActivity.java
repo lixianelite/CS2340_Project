@@ -52,7 +52,7 @@ public class ReportActivity extends AppCompatActivity {
 
         Intent receivedIntent = getIntent();
         receivedClassName = receivedIntent.getStringExtra("className");
-        if (receivedClassName.equals("MapDisplayActivityRefine")) MapReportConfiguration(receivedIntent);
+        if (receivedClassName.equals("MapDisplayActivity")) MapReportConfiguration(receivedIntent);
 
         Button report_cancelButton = (Button) findViewById(R.id.report_cancel_button);
 
