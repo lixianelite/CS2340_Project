@@ -4,17 +4,14 @@
     <item
         android:id="@+id/report_button"
         android:title="Report"/>
-    <item
-        android:id="@+id/map_display"
-        android:title="Google Map Display" />
-
-    <item
-        android:id="@+id/heat_map"
-        android:title="HeatMap Display"/>
 
     <item
         android:id="@+id/cluster_map"
         android:title="Clustering Display"/>
+
+    <item
+        android:id="@+id/heat_map"
+        android:title="HeatMap Display"/>
 
     <item
         android:id="@+id/menu_chart"
