@@ -44,7 +44,6 @@
         <activity android:name=".activity.ReportActivity"></activity>
         <activity android:name=".activity.DataDetailActivity"></activity>
         <activity android:name=".activity.ChartActivity"></activity>
-        <activity android:name=".activity.MapDisplayActivity"/>
         <activity android:name=".activity.HeatMapActivity"/>
         <activity android:name=".activity.ClusterMapActivity"/>
     </application>
