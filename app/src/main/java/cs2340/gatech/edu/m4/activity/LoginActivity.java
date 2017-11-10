@@ -108,12 +108,10 @@ public class LoginActivity extends AppCompatActivity {
             String line;
             br.readLine(); //get rid of header line
             int i = 1;
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null && i < 10000) {
                 Log.d("readSDFile", i + "");
                 i++;
-                Log.d(MainActivity.TAG, line);
                 String[] tokens = line.split(",");
-                //Log.d("readSDFile", "tokens[8]: " + tokens[8]);
                 if (tokens.length != 51) {
                     continue;
                 }
