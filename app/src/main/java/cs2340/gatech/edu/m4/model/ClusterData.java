@@ -9,14 +9,26 @@ import com.google.maps.android.clustering.ClusterItem;
 
 public class ClusterData implements ClusterItem {
     private LatLng mPosition;
+    private String title;
+    private String snippet;
 
-    public ClusterData(double lat, double lng){
+    public ClusterData(double lat, double lng, String title, String snippet){
         mPosition = new LatLng(lat, lng);
+        this.title = title;
+        this.snippet = snippet;
     }
 
     @Override
     public LatLng getPosition() {
         return mPosition;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
+    public String getSnippet(){
+        return snippet;
     }
 
 }
