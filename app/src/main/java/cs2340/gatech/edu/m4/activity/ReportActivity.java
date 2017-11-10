@@ -52,7 +52,7 @@ public class ReportActivity extends AppCompatActivity {
 
         Intent receivedIntent = getIntent();
         receivedClassName = receivedIntent.getStringExtra("className");
-        if (receivedClassName.equals("MapDisplayActivity")) MapReportConfiguration(receivedIntent);
+        if (receivedClassName.equals("ClusterMapDisplayActivity")) MapReportConfiguration(receivedIntent);
 
         Button report_cancelButton = (Button) findViewById(R.id.report_cancel_button);
 
@@ -69,9 +69,16 @@ public class ReportActivity extends AppCompatActivity {
         report_writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WriteData();
-                Toast.makeText(ReportActivity.this, "Reported the rat sightseeing! Good Job!", Toast.LENGTH_SHORT).show();
-                finish();
+                if(dateText.getText().toString().equals("") || latitudeText.getText().toString().equals("") || longitudeText.getText().toString().equals("") || zipText.getText().toString().equals("")){
+                    if (dateText.getText().toString().equals("")) Toast.makeText(ReportActivity.this, "Report error! created date can't be null", Toast.LENGTH_SHORT).show();
+                    else if(zipText.getText().toString().equals("")) Toast.makeText(ReportActivity.this, "Report error! Zip Code can't be null", Toast.LENGTH_SHORT).show();
+                    else if(latitudeText.getText().toString().equals("")) Toast.makeText(ReportActivity.this, "Report error! Latitude can't be null", Toast.LENGTH_SHORT).show();
+                    else if (longitudeText.getText().toString().equals("")) Toast.makeText(ReportActivity.this, "Report error! Longitude can't be null", Toast.LENGTH_SHORT).show();
+                }else{
+                    WriteData();
+                    Toast.makeText(ReportActivity.this, "Reported the rat sightseeing! Good Job!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
     }
