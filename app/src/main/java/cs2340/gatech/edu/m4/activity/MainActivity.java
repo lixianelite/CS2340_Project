@@ -36,6 +36,9 @@ import cs2340.gatech.edu.m4.model.DataItem;
 import cs2340.gatech.edu.m4.model.DataItemAdapter;
 import cs2340.gatech.edu.m4.model.SimpleModel;
 
+
+// The data is from department of Health and Mental Hygiene
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     public static String TAG = "MY_APP";
 
@@ -60,10 +63,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent ReportIntent = new Intent(MainActivity.this, ReportActivity.class);
                 ReportIntent.putExtra("className", "MainActivity");
                 MainActivity.this.startActivity(ReportIntent);
-                break;
-            case R.id.map_display:
-                AlertDialog.Builder dialog = getAlertDialog("map_display");
-                dialog.show();
                 break;
             case R.id.menu_chart:
                 AlertDialog.Builder dialog1 = getAlertDialog("chart_display");
@@ -148,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return String.valueOf(standardDate);
     }
 
-
     private AlertDialog.Builder getAlertDialog(final String choice){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setTitle("Select Date Range");
@@ -227,9 +225,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         String edText = endDate.getText().toString();
 
                         if (sdText != null && !sdText.isEmpty() && edText != null && !edText.isEmpty()){
-                            if (choice.equals("map_display")){
-                                Intent MapDisplay = new Intent(MainActivity.this, MapDisplayActivity.class);
-                                MainActivity.this.startActivity(MapDisplay);
+                            if (choice.equals("cluster_display")){
+                                Intent ClusterMapDisplay = new Intent(MainActivity.this, ClusterMapActivity.class);
+                                MainActivity.this.startActivity(ClusterMapDisplay);
                                 filtering(sdText, edText);
                             }else if (choice.equals("chart_display")){
                                 Intent ChartDisplay = new Intent(MainActivity.this, ChartActivity.class);
@@ -239,10 +237,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 Intent HeatMapDisplay = new Intent(MainActivity.this, HeatMapActivity.class);
                                 filtering(sdText, edText);
                                 MainActivity.this.startActivity(HeatMapDisplay);
-                            }else if (choice.equals("cluster_display")){
-                                Intent ClusterMapDisplay = new Intent(MainActivity.this, ClusterMapActivity.class);
-                                filtering(sdText, edText);
-                                MainActivity.this.startActivity(ClusterMapDisplay);
                             }
                         } else{
                             Toast.makeText(getApplicationContext(),
