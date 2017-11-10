@@ -20,6 +20,8 @@ import cs2340.gatech.edu.m4.model.DataDatabaseHelper;
 import cs2340.gatech.edu.m4.model.DataItem;
 import cs2340.gatech.edu.m4.model.SimpleModel;
 
+
+
 public class WelcomeActivity extends AppCompatActivity {
 
     @Override
