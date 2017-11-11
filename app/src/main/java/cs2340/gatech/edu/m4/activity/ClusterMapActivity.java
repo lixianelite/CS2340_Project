@@ -11,8 +11,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.view.DefaultClusterRenderer;
+import com.google.maps.android.ui.IconGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +99,7 @@ public class ClusterMapActivity extends BaseMapActivity implements GoogleMap.OnI
         int Item_id = Integer.parseInt(marker.getTitle());
         Intent intent = new Intent(ClusterMapActivity.this, DataDetailActivity.class);
         intent.putExtra(DataDetailActivity.ARG_ITEM_ID, Item_id);
+        intent.putExtra(DataDetailActivity.ACTIVITY, "ClusterMapActivity");
         this.startActivity(intent);
     }
 
