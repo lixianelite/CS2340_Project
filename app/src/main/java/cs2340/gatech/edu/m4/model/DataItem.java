@@ -27,6 +27,10 @@ public class DataItem {
         longitude = lon;
     }
 
+    public DataItem(){
+
+    }
+
     public int getId() { return id; }
     public String getCreatedDate() { return createdDate; }
     public String getLocationType() { return locationType; }
