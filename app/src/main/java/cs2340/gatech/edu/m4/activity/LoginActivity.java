@@ -1,8 +1,6 @@
 package cs2340.gatech.edu.m4.activity;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 
@@ -25,12 +23,11 @@ import cs2340.gatech.edu.m4.model.DataDatabaseHelper;
 import cs2340.gatech.edu.m4.model.DataItem;
 import cs2340.gatech.edu.m4.model.SimpleModel;
 import cs2340.gatech.edu.m4.model.UserDatabaseHelper;
-import cs2340.gatech.edu.m4.model.User;
-import cs2340.gatech.edu.m4.model.UserDatabaseHelper;
 
 /**
  * A login screen that offers login via email/password.
  */
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText mUserView;
