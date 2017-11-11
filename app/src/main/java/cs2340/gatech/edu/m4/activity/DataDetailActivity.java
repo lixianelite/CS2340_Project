@@ -1,6 +1,7 @@
 package cs2340.gatech.edu.m4.activity;
 
 import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,12 +13,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import cs2340.gatech.edu.m4.R;
+import cs2340.gatech.edu.m4.model.DataDatabaseHelper;
 import cs2340.gatech.edu.m4.model.DataItem;
 import cs2340.gatech.edu.m4.model.SimpleModel;
 
 public class DataDetailActivity extends AppCompatActivity {
 
     public static final String ARG_ITEM_ID = "item_id";
+    public static final String ACTIVITY = "activity";
+
+    private DataDatabaseHelper dataDatabaseHelper;
+    private SQLiteDatabase db;
 
     private DataItem mItem;
 
@@ -40,9 +46,13 @@ public class DataDetailActivity extends AppCompatActivity {
 
         int item_id = getIntent().getIntExtra(ARG_ITEM_ID, -1);
 
-
-
-        mItem = SimpleModel.INSTANCE.findItemById(Integer.valueOf(item_id));
+        if (getIntent().getStringExtra(ACTIVITY).equals("ClusterMapActivity")){
+            dataDatabaseHelper = new DataDatabaseHelper(this, "Data.db", null, 1);
+            db = dataDatabaseHelper.getWritableDatabase();
+            mItem = DataDatabaseHelper.QueryData(db, item_id);
+        }else {
+            mItem = SimpleModel.INSTANCE.findItemById(item_id);
+        }
 
         dkey = (TextView) findViewById(R.id.detail_key);
         ddate = (TextView) findViewById(R.id.detail_date);
@@ -63,8 +73,6 @@ public class DataDetailActivity extends AppCompatActivity {
         dbo.setText("Borough:" + " " + String.valueOf(mItem.getBorough()));
         dla.setText("Latitude:" + " " + String.valueOf(mItem.getLatitude()));
         dlon.setText("Longitude:" + " " + String.valueOf(mItem.getLongitude()));
-
-
 
     }
 
