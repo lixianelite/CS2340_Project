@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class DataDatabaseHelper extends SQLiteOpenHelper{
             + "borough text, "
             + "latitude real, "
             + "longitude real)";
+
 
     private Context mContext;
 
@@ -68,9 +70,11 @@ public class DataDatabaseHelper extends SQLiteOpenHelper{
         }
     }
 
-    public static void readDatabase(SQLiteDatabase db){
+    public static void readDatabase(SQLiteDatabase db, String startDate, String endDate){
         SimpleModel model = SimpleModel.INSTANCE;
-        Cursor cursor = db.query("data", null, null, null, null, null, null);
+        String formatStartDate = dateTransform(startDate);
+        String formatEndDate = dateTransform(endDate);
+        Cursor cursor = db.query("data", null, "date >= ? and date <= ?", new String[]{formatStartDate, formatEndDate}, null, null, null);
         if (cursor.moveToFirst()){
             do{
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -89,10 +93,30 @@ public class DataDatabaseHelper extends SQLiteOpenHelper{
         }
     }
 
+    public static DataItem QueryData(SQLiteDatabase db, int DataId){
+        Cursor cursor = db.query("data", null, "id = ?", new String[]{String.valueOf(DataId)}, null, null, null);
+        DataItem item = new DataItem();
+        if (cursor.moveToFirst()){
+            do{
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                String date = cursor.getString(cursor.getColumnIndex("date"));
+                String location_type = cursor.getString(cursor.getColumnIndex("location_type"));
+                int zip = cursor.getInt(cursor.getColumnIndex("zip"));
+                String address = cursor.getString(cursor.getColumnIndex("address"));
+                String city = cursor.getString(cursor.getColumnIndex("city"));
+                String borough = cursor.getString(cursor.getColumnIndex("borough"));
+                float latitude = cursor.getFloat(cursor.getColumnIndex("latitude"));
+                float longitude = cursor.getFloat(cursor.getColumnIndex("longitude"));
+                item = new DataItem(id, date, location_type, zip, address, city, borough, latitude, longitude);
+            }while (cursor.moveToNext());
+            cursor.close();
+        }
+        return item;
+    }
+
     public static void loadId(SQLiteDatabase db){
         SimpleModel model = SimpleModel.INSTANCE;
-        Cursor cursor = db.query("data", new String[]{"id"}, null, null, null, null, null);
-
+        Cursor cursor = db.query("data", new String[]{"id"}, "id >= ?", new String[]{"50000000"}, null, null, null);
         if (cursor.moveToFirst()){
             do {
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -103,8 +127,7 @@ public class DataDatabaseHelper extends SQLiteOpenHelper{
         }
     }
 
-    public static void FilterData(SQLiteDatabase db, String startDate, String endDate){
-        List<DataItem> list = SimpleModel.INSTANCE.getFilteredList();
+    public static void FilterData(SQLiteDatabase db, String startDate, String endDate, List<DataItem> list){
         list.clear();
         startDate = dateTransform(startDate);
         endDate = dateTransform(endDate);
@@ -125,10 +148,7 @@ public class DataDatabaseHelper extends SQLiteOpenHelper{
                 list.add(item);
             }while (cursor.moveToNext());
             cursor.close();
-        }else {
-            Log.d("DataBasehelper", "No Data");
         }
-        Log.d("DataBasehelper: ", "list: " + list.size());
     }
 
     public static String dateTransform(String rawDate){
@@ -138,6 +158,18 @@ public class DataDatabaseHelper extends SQLiteOpenHelper{
         if (month < 10) date[1] = "0" + date[1];
         if (day < 10) date[2] = "0" + date[2];
         return date[0] + "-" + date[1] + "-" + date[2];
+    }
+
+    public static boolean isDbPresent(){
+        boolean checkFlag = true;
+        SQLiteDatabase testDb;
+        String testPath = "data/data/cs2340.gatech.edu.m4/databases/Data.db";
+        try {
+            testDb = SQLiteDatabase.openDatabase(testPath, null, SQLiteDatabase.OPEN_READWRITE);
+        }catch (SQLiteException sqlException){
+            checkFlag = false;
+        }
+        return checkFlag;
     }
 
 }
