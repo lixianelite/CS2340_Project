@@ -55,6 +55,7 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
                 Context context = view.getContext();
                 Intent intent = new Intent(context, DataDetailActivity.class);
                 intent.putExtra(DataDetailActivity.ARG_ITEM_ID, item.getId());
+                intent.putExtra(DataDetailActivity.ACTIVITY, "MainActivity");
                 view.getContext().startActivity(intent);
             }
         });
