@@ -1,16 +1,19 @@
 package cs2340.gatech.edu.m4.activity;
 
-import android.content.Context;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Random;
 
 import cs2340.gatech.edu.m4.R;
@@ -32,6 +35,7 @@ public class ReportActivity extends AppCompatActivity {
     private DataDatabaseHelper dataDatabaseHelper;
     private SQLiteDatabase db;
     private String receivedClassName;
+    private Calendar myCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,23 +53,36 @@ public class ReportActivity extends AppCompatActivity {
         random = new Random();
         dataDatabaseHelper = new DataDatabaseHelper(this, "Data.db", null, 1);
         db = dataDatabaseHelper.getWritableDatabase();
+        Button report_writeButton = (Button) findViewById(R.id.report_write_button);
+        Button report_cancelButton = (Button) findViewById(R.id.report_cancel_button);
+
+        myCalendar = Calendar.getInstance();
+        final String dateFormat = "y-M-d";
+
+        final DatePickerDialog.OnDateSetListener create_date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, month);
+                myCalendar.set(Calendar.DAY_OF_MONTH, day);
+                SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
+                dateText.setText(sdf.format(myCalendar.getTime()));
+            }
+        };
 
         Intent receivedIntent = getIntent();
         receivedClassName = receivedIntent.getStringExtra("className");
         if (receivedClassName.equals("ClusterMapDisplayActivity")) MapReportConfiguration(receivedIntent);
 
-        Button report_cancelButton = (Button) findViewById(R.id.report_cancel_button);
-
-
-        report_cancelButton.setOnClickListener(new View.OnClickListener(){
+        dateText.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                finish();
+            public void onClick(View v) {
+                new DatePickerDialog(ReportActivity.this, create_date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
-
-        Button report_writeButton = (Button) findViewById(R.id.report_write_button);
         report_writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,6 +96,13 @@ public class ReportActivity extends AppCompatActivity {
                     Toast.makeText(ReportActivity.this, "Reported the rat sightseeing! Good Job!", Toast.LENGTH_SHORT).show();
                     finish();
                 }
+            }
+        });
+
+        report_cancelButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }
@@ -95,29 +119,17 @@ public class ReportActivity extends AppCompatActivity {
     private void WriteData(){
         SimpleModel model = SimpleModel.INSTANCE;
 
-        int genId = 10000000 + random.nextInt(90000000);
+        int genId = 50000000 + random.nextInt(10000000);
         while (model.containsId(genId)){
-            genId = 10000000 + random.nextInt(90000000);
+            genId = 50000000 + random.nextInt(10000000);
         }
 
-        String date = dateText.getText().toString();
+        String rawdate = DataDatabaseHelper.dateTransform(dateText.getText().toString());
 
-        Log.d("ReportActivity", date);
-        date = TransformDate(date);
-        Log.d("ReportActivity", date);
-
-        DataItem data = new DataItem(genId, dateText.getText().toString(), locationText.getText().toString(), Integer.valueOf(zipText.getText().toString()), addressText.getText().toString(), cityText.getText().toString(), boroughText.getText().toString(), Float.valueOf(latitudeText.getText().toString()), Float.valueOf(longitudeText.getText().toString()));
+        DataItem data = new DataItem(genId, rawdate, locationText.getText().toString(), Integer.valueOf(zipText.getText().toString()), addressText.getText().toString(), cityText.getText().toString(), boroughText.getText().toString(), Float.valueOf(latitudeText.getText().toString()), Float.valueOf(longitudeText.getText().toString()));
         model.addItem(data);
         model.addId(genId);
         DataDatabaseHelper.writeIntoDatabase(db, data);
-    }
-
-    private String TransformDate(String rawDate){
-        String[] date = rawDate.split("/");
-        int year = Integer.parseInt(date[2]);
-        int month = Integer.parseInt(date[0]);
-        int day = Integer.parseInt(date[1]);
-        return month + "/" + day + "/" + year + " 00:00";
     }
 
 }
