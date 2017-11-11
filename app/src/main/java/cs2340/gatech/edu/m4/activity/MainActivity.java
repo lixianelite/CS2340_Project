@@ -94,62 +94,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-    private void filterProcess(String startDate, String endDate){
-        List<DataItem> list = SimpleModel.INSTANCE.getItems();
-        Map<Integer, String> formatMap = SimpleModel.INSTANCE.getFormatMap();
-        String[] startArray = startDate.split("-");
-        String[] endArray = endDate.split("-");
-
-        int startMon = Integer.parseInt(startArray[1]);
-        int startYear = Integer.parseInt(startArray[0]);
-        int endMon = Integer.parseInt(endArray[1]);
-        int endYear = Integer.parseInt(endArray[0]);
-        int years = Math.max(0, endYear - startYear - 1);
-
-        int times = startYear != endYear ? 13 - startMon + endMon + years * 12 : endMon - startMon + 1;
-
-
-        HashMap<String, Integer> map = new HashMap<>();
-
-        for (int i = 0; i < times; i++){
-            int dateYear = startYear + (startMon + i) / 13;
-            int dateMon = (startMon - 1 + i) % 12 + 1;
-
-
-            float standardDate = dateYear + (float)dateMon / 100;
-            map.put(String.valueOf(standardDate), 0);
-            String formatDate = dateYear + "." + dateMon;
-            formatMap.put(i, formatDate);
-        }
-
-        for (DataItem item : list){
-            String createdDate = Transform(item.getCreatedDate());
-            if (map.containsKey(createdDate)){
-                map.put(createdDate, map.get(createdDate) + 1);
-            }
-        }
-
-        for (int i = 0; i < times; i++){
-            int dateYear = startYear + (startMon + i) / 13;
-            int dateMon = (startMon - 1 + i) % 12 + 1;
-            float standardDate = dateYear + (float)dateMon / 100;
-            int count = map.get(String.valueOf(standardDate));
-
-            SimpleModel.INSTANCE.addEntry(new Entry(i, count));
-        }
-    }
-
-    private String Transform(String rawDate){
-        String[] date = rawDate.split("-");
-
-        int Year = Integer.parseInt(date[0]);
-        int Mon = Integer.parseInt(date[1]);
-
-
-        float standardDate = Year + (float)Mon / 100;
-        return String.valueOf(standardDate);
-    }
-
     private AlertDialog.Builder getAlertDialog(final String choice){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setTitle("Select Date Range");
@@ -221,22 +165,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     public void onClick (DialogInterface dialogInterface, int i) {
                         String sdText = startDate.getText().toString();
                         String edText = endDate.getText().toString();
-
-                        Log.d("alertDialog", sdText);
-                        Log.d("alertDialog", edText);
+                        DataDatabaseHelper.FilterData(db, sdText, edText, SimpleModel.INSTANCE.getFilteredList());
 
                         if (sdText != null && !sdText.isEmpty() && edText != null && !edText.isEmpty()){
                             if (choice.equals("cluster_display")){
                                 Intent ClusterMapDisplay = new Intent(MainActivity.this, ClusterMapActivity.class);
                                 MainActivity.this.startActivity(ClusterMapDisplay);
-                                DataDatabaseHelper.FilterData(db, sdText, edText);
                             }else if (choice.equals("chart_display")){
                                 Intent ChartDisplay = new Intent(MainActivity.this, ChartActivity.class);
-                                MainActivity.this.startActivity(ChartDisplay);
                                 filterProcess(sdText, edText);
+                                MainActivity.this.startActivity(ChartDisplay);
                             }else if (choice.equals("heatmap_display")){
                                 Intent HeatMapDisplay = new Intent(MainActivity.this, HeatMapActivity.class);
-                                DataDatabaseHelper.FilterData(db, sdText, edText);
                                 MainActivity.this.startActivity(HeatMapDisplay);
                             }
                         } else{
@@ -257,38 +197,54 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return alertDialog;
     }
 
+    private void filterProcess(String startDate, String endDate){
+        List<DataItem> list = SimpleModel.INSTANCE.getFilteredList();
+        Map<Integer, String> formatMap = SimpleModel.INSTANCE.getFormatMap();
+        String[] startArray = startDate.split("-");
+        String[] endArray = endDate.split("-");
+
+        int startMon = Integer.parseInt(startArray[1]);
+        int startYear = Integer.parseInt(startArray[0]);
+        int endMon = Integer.parseInt(endArray[1]);
+        int endYear = Integer.parseInt(endArray[0]);
+        int years = Math.max(0, endYear - startYear - 1);
+
+        int times = startYear != endYear ? 13 - startMon + endMon + years * 12 : endMon - startMon + 1;
 
 
+        HashMap<String, Integer> map = new HashMap<>();
 
-    /*private static Date changeDateFormat(String date) throws ParseException {
-        DateFormat format = new SimpleDateFormat("y-M-d");
-        Date formateddate = format.parse(date);
+        for (int i = 0; i < times; i++){
+            int dateYear = startYear + (startMon + i) / 13;
+            int dateMon = (startMon - 1 + i) % 12 + 1;
 
-        return formateddate;
-    }*/
-
-    /*private void filtering(String start_date, String end_date){
-        Date startDate = new Date();
-        Date endDate = new Date();
-        try {
-            startDate = changeDateFormat(start_date);
-            endDate = changeDateFormat(end_date);
-        } catch (ParseException e) {
-            e.printStackTrace();
+            float standardDate = dateYear + (float)dateMon / 100;
+            map.put(String.valueOf(standardDate), 0);
+            String formatDate = dateYear + "." + dateMon;
+            formatMap.put(i, formatDate);
         }
-        SimpleModel.INSTANCE.getFilteredList().clear();
-        List<DataItem> list = SimpleModel.INSTANCE.getItems();
+
         for (DataItem item : list){
-            Date created_date = new Date();
-            try{
-                created_date = changeDateFormat(item.getCreatedDate());
-            } catch (ParseException e){
-                e.printStackTrace();
-            }
-            if (created_date.after(startDate) && created_date.before(endDate)){
-                SimpleModel.INSTANCE.getFilteredList().add(item);
-            }
+            String createdDate = Transform(item.getCreatedDate());
+            map.put(createdDate, map.get(createdDate) + 1);
         }
-    }*/
 
+        for (int i = 0; i < times; i++){
+            int dateYear = startYear + (startMon + i) / 13;
+            int dateMon = (startMon - 1 + i) % 12 + 1;
+            float standardDate = dateYear + (float)dateMon / 100;
+            int count = map.get(String.valueOf(standardDate));
+            SimpleModel.INSTANCE.addEntry(new Entry(i, count));
+        }
+    }
+
+    private String Transform(String rawDate){
+        String[] date = rawDate.split("-");
+
+        int Year = Integer.parseInt(date[0]);
+        int Mon = Integer.parseInt(date[1]);
+
+        float standardDate = Year + (float)Mon / 100;
+        return String.valueOf(standardDate);
+    }
 }
