@@ -44,8 +44,6 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
         return viewHolder;
     }
 
-
-
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final DataItem item = list.get(position);
