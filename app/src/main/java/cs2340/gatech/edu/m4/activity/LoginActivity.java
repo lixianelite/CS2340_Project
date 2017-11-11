@@ -17,6 +17,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import cs2340.gatech.edu.m4.R;
 import cs2340.gatech.edu.m4.model.DataDatabaseHelper;
@@ -47,8 +49,14 @@ public class LoginActivity extends AppCompatActivity {
 
         mPasswordView = (EditText) findViewById(R.id.password);
 
-        dataDatabaseHelper = new DataDatabaseHelper(this, "Data.db", null, 1);
-        db = dataDatabaseHelper.getWritableDatabase();
+        if(!DataDatabaseHelper.isDbPresent()){
+            dataDatabaseHelper = new DataDatabaseHelper(LoginActivity.this, "Data.db", null, 1);
+            db = dataDatabaseHelper.getWritableDatabase();
+            readSDFile();
+        }else {
+            dataDatabaseHelper = new DataDatabaseHelper(LoginActivity.this, "Data.db", null, 1);
+            db = dataDatabaseHelper.getWritableDatabase();
+        }
 
         Button mUsernameSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mUsernameSignInButton.setOnClickListener(new OnClickListener() {
@@ -56,7 +64,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String username = mUserView.getText().toString();
                 String password =  mPasswordView.getText().toString();
-                int count = 0;
 
                 String searchpassword = helper.searchPassword(username);
 
@@ -64,18 +71,14 @@ public class LoginActivity extends AppCompatActivity {
                     mUserView.setError(getString(R.string.error_field_required));
                 }
 
-
                 if (searchpassword.equals(password)) {
-
                     DataDatabaseHelper.loadId(db);
-                    readSDFile();
-                    DataDatabaseHelper.readDatabase(db);
-
+                    Log.d("check", "size: " + SimpleModel.INSTANCE.getIdContainer().size() + "");
+                    DataDatabaseHelper.readDatabase(db, "2013-01-01", "2013-12-31");
                     finish();
                     Intent loginIntent = new Intent (LoginActivity.this, MainActivity.class);
                     LoginActivity.this.startActivity(loginIntent);
-                }
-                else{
+                } else{
                     mPasswordView.setError(getString(R.string.error_incorrect_password));
                 }
             }
@@ -95,7 +98,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void readSDFile() {
-        SimpleModel model = SimpleModel.INSTANCE;
 
         try {
             InputStream is = getResources().openRawResource(R.raw.rat_sightings);
@@ -104,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
             String line;
             br.readLine(); //get rid of header line
             int i = 1;
-            while ((line = br.readLine()) != null && i < 50000) {
+            while ((line = br.readLine()) != null) {
                 Log.d("readSDFile", i + "");
                 i++;
                 String[] tokens = line.split(",");
@@ -112,12 +114,9 @@ public class LoginActivity extends AppCompatActivity {
                     continue;
                 }
                 int id = Integer.parseInt(tokens[0]);
-                if (!model.containsId(id)) {
-                    String date = transformDate(tokens[1]);
-                    DataItem item = new DataItem(id, date, tokens[7], Integer.valueOf(tokens[8]), tokens[9], tokens[16], tokens[23], Float.valueOf(tokens[49]), Float.valueOf(tokens[50]));
-                    DataDatabaseHelper.writeIntoDatabase(db, item);
-                    model.addId(id);
-                }
+                String date = transformDate(tokens[1]);
+                DataItem item = new DataItem(id, date, tokens[7], Integer.valueOf(tokens[8]), tokens[9], tokens[16], tokens[23], Float.valueOf(tokens[49]), Float.valueOf(tokens[50]));
+                DataDatabaseHelper.writeIntoDatabase(db, item);
             }
             br.close();
         } catch (IOException e) {
