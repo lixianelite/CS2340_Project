@@ -95,7 +95,6 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
-
     }
 
     private void readSDFile() {
@@ -108,27 +107,36 @@ public class LoginActivity extends AppCompatActivity {
             String line;
             br.readLine(); //get rid of header line
             int i = 1;
-            while ((line = br.readLine()) != null && i < 10000) {
+            while ((line = br.readLine()) != null && i < 50000) {
                 Log.d("readSDFile", i + "");
                 i++;
                 String[] tokens = line.split(",");
-                if (tokens.length != 51) {
+                if (tokens.length != 51 || tokens[8].equals("")) {
                     continue;
                 }
-                int zip = tokens[8].equals("") ? -1 : Integer.valueOf(tokens[8]);
                 int id = Integer.parseInt(tokens[0]);
                 if (!model.containsId(id)) {
-                    DataItem item = new DataItem(id, tokens[1], tokens[7], zip, tokens[9], tokens[16], tokens[23], Float.valueOf(tokens[49]), Float.valueOf(tokens[50]));
+                    String date = transformDate(tokens[1]);
+                    DataItem item = new DataItem(id, date, tokens[7], Integer.valueOf(tokens[8]), tokens[9], tokens[16], tokens[23], Float.valueOf(tokens[49]), Float.valueOf(tokens[50]));
                     DataDatabaseHelper.writeIntoDatabase(db, item);
                     model.addId(id);
                 }
             }
             br.close();
         } catch (IOException e) {
-            Log.e(MainActivity.TAG, "error reading assets", e);
+            Log.e("MainActivity", "error reading assets", e);
         }
     }
 
+    private String transformDate(String rawDate){
+        String[] date = rawDate.split("/");
+        String[] subDate = date[2].split(" ");
+        int month = Integer.parseInt(date[0]);
+        int day = Integer.parseInt(date[1]);
+        if (day < 10) date[1] = "0" + date[1];
+        if (month < 10) date[0] = "0" + date[0];
+        return 20 + subDate[0] + "-" + date[0] + "-" + date[1];
+    }
 
 }
 
