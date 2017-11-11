@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AlertDialog;
@@ -40,7 +41,8 @@ import cs2340.gatech.edu.m4.model.SimpleModel;
 // The data is from department of Health and Mental Hygiene
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    public static String TAG = "MY_APP";
+    private DataDatabaseHelper dataDatabaseHelper;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         DataItemAdapter adapter = new DataItemAdapter(SimpleModel.INSTANCE.getItems());
         recyclerView.setAdapter(adapter);
+        dataDatabaseHelper = new DataDatabaseHelper(this, "Data.db", null, 1);
+        db = dataDatabaseHelper.getWritableDatabase();
 
         NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
 
@@ -93,13 +97,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void filterProcess(String startDate, String endDate){
         List<DataItem> list = SimpleModel.INSTANCE.getItems();
         Map<Integer, String> formatMap = SimpleModel.INSTANCE.getFormatMap();
-        String[] startArray = startDate.split("/");
-        String[] endArray = endDate.split("/");
+        String[] startArray = startDate.split("-");
+        String[] endArray = endDate.split("-");
 
-        int startMon = Integer.parseInt(startArray[0]);
-        int startYear = Integer.parseInt(startArray[2]);
-        int endMon = Integer.parseInt(endArray[0]);
-        int endYear = Integer.parseInt(endArray[2]);
+        int startMon = Integer.parseInt(startArray[1]);
+        int startYear = Integer.parseInt(startArray[0]);
+        int endMon = Integer.parseInt(endArray[1]);
+        int endYear = Integer.parseInt(endArray[0]);
         int years = Math.max(0, endYear - startYear - 1);
 
         int times = startYear != endYear ? 13 - startMon + endMon + years * 12 : endMon - startMon + 1;
@@ -136,11 +140,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private String Transform(String rawDate){
-        String[] date = rawDate.split("/");
-        String[] subDate = date[2].split(" ");
+        String[] date = rawDate.split("-");
 
-        int Mon = Integer.parseInt(date[0]);
-        int Year = Integer.parseInt(subDate[0]);
+        int Year = Integer.parseInt(date[0]);
+        int Mon = Integer.parseInt(date[1]);
 
 
         float standardDate = Year + (float)Mon / 100;
@@ -156,19 +159,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final EditText startDate = new EditText(context);
         startDate.setClickable(true);
         startDate.setFocusable(false);
-        startDate.setHint("Enter StartDate: MM/DD/YY");
+        startDate.setHint("Enter StartDate: YY-MM-DD");
         layout.addView(startDate);
 
         final EditText endDate = new EditText(context);
         endDate.setClickable(true);
         endDate.setFocusable(false);
-        endDate.setHint("Enter EndDate: MM/DD/YY");
+        endDate.setHint("Enter EndDate: YY-MM-DD");
         layout.addView(endDate);
 
         alertDialog.setView(layout);
 
         final Calendar myCalendar = Calendar.getInstance();
-        final String dateFormat = "MM/dd/yy";
+        final String dateFormat = "y-M-d";
 
         final DatePickerDialog.OnDateSetListener start_date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -179,11 +182,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
                 startDate.setText(sdf.format(myCalendar.getTime()));
             }
-
         };
 
         startDate.setOnClickListener(new View.OnClickListener() {
-
 
             @Override
             public void onClick(View view) {
@@ -202,12 +203,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
                 endDate.setText(sdf.format(myCalendar.getTime()));
             }
-
         };
 
         endDate.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View view) {
                 new DatePickerDialog(MainActivity.this, end_date, myCalendar
@@ -224,18 +222,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         String sdText = startDate.getText().toString();
                         String edText = endDate.getText().toString();
 
+                        Log.d("alertDialog", sdText);
+                        Log.d("alertDialog", edText);
+
                         if (sdText != null && !sdText.isEmpty() && edText != null && !edText.isEmpty()){
                             if (choice.equals("cluster_display")){
                                 Intent ClusterMapDisplay = new Intent(MainActivity.this, ClusterMapActivity.class);
                                 MainActivity.this.startActivity(ClusterMapDisplay);
-                                filtering(sdText, edText);
+                                DataDatabaseHelper.FilterData(db, sdText, edText);
                             }else if (choice.equals("chart_display")){
                                 Intent ChartDisplay = new Intent(MainActivity.this, ChartActivity.class);
                                 MainActivity.this.startActivity(ChartDisplay);
                                 filterProcess(sdText, edText);
                             }else if (choice.equals("heatmap_display")){
                                 Intent HeatMapDisplay = new Intent(MainActivity.this, HeatMapActivity.class);
-                                filtering(sdText, edText);
+                                DataDatabaseHelper.FilterData(db, sdText, edText);
                                 MainActivity.this.startActivity(HeatMapDisplay);
                             }
                         } else{
@@ -257,14 +258,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    private static Date changeDateFormat(String date) throws ParseException {
-        DateFormat format = new SimpleDateFormat("M/d/yy");
+
+
+    /*private static Date changeDateFormat(String date) throws ParseException {
+        DateFormat format = new SimpleDateFormat("y-M-d");
         Date formateddate = format.parse(date);
 
         return formateddate;
-    }
+    }*/
 
-    private void filtering(String start_date, String end_date){
+    /*private void filtering(String start_date, String end_date){
         Date startDate = new Date();
         Date endDate = new Date();
         try {
@@ -286,6 +289,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 SimpleModel.INSTANCE.getFilteredList().add(item);
             }
         }
-    }
+    }*/
 
 }
