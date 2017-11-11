@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import cs2340.gatech.edu.m4.R;
 import cs2340.gatech.edu.m4.activity.MainActivity;
@@ -100,6 +101,43 @@ public class DataDatabaseHelper extends SQLiteOpenHelper{
             }while (cursor.moveToNext());
             cursor.close();
         }
+    }
+
+    public static void FilterData(SQLiteDatabase db, String startDate, String endDate){
+        List<DataItem> list = SimpleModel.INSTANCE.getFilteredList();
+        list.clear();
+        startDate = dateTransform(startDate);
+        endDate = dateTransform(endDate);
+        Cursor cursor = db.query("data", null, "date >= ? and date <= ?", new String[]{startDate, endDate}, null, null, null);
+        Log.d("DataBasehelper", "startDate: " + startDate + " endData:" + endDate);
+        if (cursor.moveToFirst()){
+            do {
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                String date = cursor.getString(cursor.getColumnIndex("date"));
+                String location_type = cursor.getString(cursor.getColumnIndex("location_type"));
+                int zip = cursor.getInt(cursor.getColumnIndex("zip"));
+                String address = cursor.getString(cursor.getColumnIndex("address"));
+                String city = cursor.getString(cursor.getColumnIndex("city"));
+                String borough = cursor.getString(cursor.getColumnIndex("borough"));
+                float latitude = cursor.getFloat(cursor.getColumnIndex("latitude"));
+                float longitude = cursor.getFloat(cursor.getColumnIndex("longitude"));
+                DataItem item = new DataItem(id, date, location_type, zip, address, city, borough, latitude, longitude);
+                list.add(item);
+            }while (cursor.moveToNext());
+            cursor.close();
+        }else {
+            Log.d("DataBasehelper", "No Data");
+        }
+        Log.d("DataBasehelper: ", "list: " + list.size());
+    }
+
+    public static String dateTransform(String rawDate){
+        String[] date = rawDate.split("-");
+        int month = Integer.parseInt(date[1]);
+        int day = Integer.parseInt(date[2]);
+        if (month < 10) date[1] = "0" + date[1];
+        if (day < 10) date[2] = "0" + date[2];
+        return date[0] + "-" + date[1] + "-" + date[2];
     }
 
 }
