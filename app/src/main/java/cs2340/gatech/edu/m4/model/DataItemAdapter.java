@@ -28,8 +28,8 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
         public ViewHolder(View view){
             super(view);
             contexView = view;
-            DataId = (TextView)view.findViewById(R.id.datalist_id);
-            DataContent = (TextView)view.findViewById(R.id.datalist_content);
+            DataId = view.findViewById(R.id.datalist_id);
+            DataContent = view.findViewById(R.id.datalist_content);
         }
     }
 

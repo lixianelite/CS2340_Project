@@ -1,15 +1,8 @@
 package cs2340.gatech.edu.m4.activity;
 
-import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import cs2340.gatech.edu.m4.R;

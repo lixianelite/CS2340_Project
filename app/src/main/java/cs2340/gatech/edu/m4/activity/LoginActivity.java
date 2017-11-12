@@ -17,8 +17,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 import cs2340.gatech.edu.m4.R;
 import cs2340.gatech.edu.m4.model.DataDatabaseHelper;
@@ -45,9 +43,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mUserView = (EditText) findViewById(R.id.username);
+        mUserView = findViewById(R.id.username);
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView = findViewById(R.id.password);
 
         if(!DataDatabaseHelper.isDbPresent()){
             dataDatabaseHelper = new DataDatabaseHelper(LoginActivity.this, "Data.db", null, 1);
@@ -58,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             db = dataDatabaseHelper.getWritableDatabase();
         }
 
-        Button mUsernameSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mUsernameSignInButton = findViewById(R.id.email_sign_in_button);
         mUsernameSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button CancelButton = (Button) findViewById((R.id.cancel_button));
+        Button CancelButton = findViewById((R.id.cancel_button));
 
         CancelButton.setOnClickListener(new OnClickListener() {
             @Override

@@ -2,23 +2,13 @@ package cs2340.gatech.edu.m4.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import cs2340.gatech.edu.m4.R;
-import cs2340.gatech.edu.m4.model.DataDatabaseHelper;
-import cs2340.gatech.edu.m4.model.DataItem;
-import cs2340.gatech.edu.m4.model.SimpleModel;
 
 
 
@@ -29,7 +19,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        Button loginButton2 = (Button) findViewById(R.id.login_button2);
+        Button loginButton2 = findViewById(R.id.login_button2);
 
         loginButton2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
-        Button registerButton2 = (Button) findViewById(R.id.register_button2);
+        Button registerButton2 = findViewById(R.id.register_button2);
         registerButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,7 +38,7 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
-        Button ExitButton = (Button) findViewById((R.id.exit_button));
+        Button ExitButton = findViewById((R.id.exit_button));
         ExitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){

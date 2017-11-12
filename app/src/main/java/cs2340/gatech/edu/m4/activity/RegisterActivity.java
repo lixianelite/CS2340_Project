@@ -27,13 +27,13 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        rUserView = (EditText) findViewById(R.id.signup_username);
-        rPasswordView = (EditText) findViewById(R.id.signup_password);
-        rUserType = (Spinner) findViewById(R.id.signup_usertype);
-        rEmail = (EditText) findViewById(R.id.signup_email);
+        rUserView = findViewById(R.id.signup_username);
+        rPasswordView = findViewById(R.id.signup_password);
+        rUserType = findViewById(R.id.signup_usertype);
+        rEmail = findViewById(R.id.signup_email);
 
-        Button signup_cancelButton = (Button) findViewById(R.id.signup_cancel_button);
-        Spinner user_typeSpinner = (Spinner) findViewById(R.id.signup_usertype);
+        Button signup_cancelButton = findViewById(R.id.signup_cancel_button);
+        Spinner user_typeSpinner = findViewById(R.id.signup_usertype);
         signup_cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         user_typeSpinner.setAdapter(adapter);
 
-        Button signupButton = (Button) findViewById(R.id.signup_button);
+        Button signupButton = findViewById(R.id.signup_button);
         signupButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {

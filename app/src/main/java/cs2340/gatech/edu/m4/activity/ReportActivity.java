@@ -42,19 +42,19 @@ public class ReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
 
-        dateText = (EditText) findViewById(R.id.date);
-        locationText = (EditText) findViewById(R.id.location);
-        zipText = (EditText) findViewById(R.id.zip);
-        addressText = (EditText) findViewById(R.id.address);
-        cityText = (EditText) findViewById(R.id.city);
-        boroughText = (EditText) findViewById(R.id.borough);
-        latitudeText = (EditText) findViewById(R.id.latitude);
-        longitudeText = (EditText) findViewById(R.id.longitude);
+        dateText = findViewById(R.id.date);
+        locationText = findViewById(R.id.location);
+        zipText = findViewById(R.id.zip);
+        addressText = findViewById(R.id.address);
+        cityText = findViewById(R.id.city);
+        boroughText = findViewById(R.id.borough);
+        latitudeText = findViewById(R.id.latitude);
+        longitudeText = findViewById(R.id.longitude);
         random = new Random();
         dataDatabaseHelper = new DataDatabaseHelper(this, "Data.db", null, 1);
         db = dataDatabaseHelper.getWritableDatabase();
-        Button report_writeButton = (Button) findViewById(R.id.report_write_button);
-        Button report_cancelButton = (Button) findViewById(R.id.report_cancel_button);
+        Button report_writeButton = findViewById(R.id.report_write_button);
+        Button report_cancelButton = findViewById(R.id.report_cancel_button);
 
         myCalendar = Calendar.getInstance();
         final String dateFormat = "y-M-d";

@@ -11,7 +11,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
@@ -21,11 +20,8 @@ import android.widget.Toast;
 
 import com.github.mikephil.charting.data.Entry;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -49,13 +45,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         DataItemAdapter adapter = new DataItemAdapter(SimpleModel.INSTANCE.getItems());
         recyclerView.setAdapter(adapter);
         dataDatabaseHelper = new DataDatabaseHelper(this, "Data.db", null, 1);
         db = dataDatabaseHelper.getWritableDatabase();
 
-        NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
+        NavigationView navigationView = findViewById(R.id.navigation_view);
 
         navigationView.setNavigationItemSelectedListener(this);
     }
@@ -167,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         String edText = endDate.getText().toString();
                         DataDatabaseHelper.FilterData(db, sdText, edText, SimpleModel.INSTANCE.getFilteredList());
 
-                        if (sdText != null && !sdText.isEmpty() && edText != null && !edText.isEmpty()){
+                        if (!sdText.isEmpty() && !edText.isEmpty()){
                             if (choice.equals("cluster_display")){
                                 Intent ClusterMapDisplay = new Intent(MainActivity.this, ClusterMapActivity.class);
                                 MainActivity.this.startActivity(ClusterMapDisplay);

@@ -2,7 +2,6 @@ package cs2340.gatech.edu.m4.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,10 +10,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.view.DefaultClusterRenderer;
-import com.google.maps.android.ui.IconGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +34,7 @@ public class ClusterMapActivity extends BaseMapActivity implements GoogleMap.OnI
     protected void startMap() {
 
         getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.713, -74.004), 10));
-        mClusterManager = new ClusterManager<ClusterData>(this, getMap());
+        mClusterManager = new ClusterManager<>(this, getMap());
 
         CustomClusterRenderer renderer = new CustomClusterRenderer(this, getMap(), mClusterManager);
 
