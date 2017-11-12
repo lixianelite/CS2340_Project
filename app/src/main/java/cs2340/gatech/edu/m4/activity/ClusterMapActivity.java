@@ -68,9 +68,9 @@ public class ClusterMapActivity extends BaseMapActivity implements GoogleMap.OnI
 
         @Override
         public View getInfoContents(Marker marker) {
-            TextView tvTitle = ((TextView)mContentsView.findViewById(R.id.title));
+            TextView tvTitle = (mContentsView.findViewById(R.id.title));
             tvTitle.setText(marker.getTitle());
-            TextView tvSnippet = ((TextView)mContentsView.findViewById(R.id.snippet));
+            TextView tvSnippet = (mContentsView.findViewById(R.id.snippet));
             tvSnippet.setText(marker.getSnippet());
             return mContentsView;
         }

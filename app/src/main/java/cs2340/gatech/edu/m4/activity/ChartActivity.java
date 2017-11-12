@@ -31,7 +31,7 @@ public class ChartActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chart);
 
-        LineChart lineChart = (LineChart)findViewById(R.id.chart);
+        LineChart lineChart = findViewById(R.id.chart);
 
         List<Entry> entries = SimpleModel.INSTANCE.getEntries(); // = convertDataSetToEntry(data.getDataList());
 

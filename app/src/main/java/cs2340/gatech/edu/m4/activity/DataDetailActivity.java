@@ -54,15 +54,15 @@ public class DataDetailActivity extends AppCompatActivity {
             mItem = SimpleModel.INSTANCE.findItemById(item_id);
         }
 
-        dkey = (TextView) findViewById(R.id.detail_key);
-        ddate = (TextView) findViewById(R.id.detail_date);
-        dloc = (TextView) findViewById(R.id.detail_loc);
-        dzip = (TextView) findViewById(R.id.detail_zip);
-        daddr = (TextView) findViewById(R.id.detail_addr);
-        dcity = (TextView) findViewById(R.id.detail_city);
-        dbo = (TextView) findViewById(R.id.detail_bo);
-        dla = (TextView) findViewById(R.id.detail_la);
-        dlon = (TextView) findViewById(R.id.detail_lon);
+        dkey = findViewById(R.id.detail_key);
+        ddate = findViewById(R.id.detail_date);
+        dloc = findViewById(R.id.detail_loc);
+        dzip = findViewById(R.id.detail_zip);
+        daddr = findViewById(R.id.detail_addr);
+        dcity = findViewById(R.id.detail_city);
+        dbo = findViewById(R.id.detail_bo);
+        dla = findViewById(R.id.detail_la);
+        dlon = findViewById(R.id.detail_lon);
 
         dkey.setText("UniqueKey:"+ " " + String.valueOf(mItem.getId()));
         ddate.setText("CreatedDate:" + " " + String.valueOf(mItem.getCreatedDate()));
