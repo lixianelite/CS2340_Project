@@ -42,22 +42,22 @@ public class WelcomeActivity extends AppCompatActivity {
         ExitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                AlertDialog.Builder alertbuilder = new AlertDialog.Builder(WelcomeActivity.this);
-                alertbuilder.setMessage("Do you want to exit?");
-                alertbuilder.setCancelable(true);
-                alertbuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(WelcomeActivity.this);
+                alertBuilder.setMessage("Do you want to exit?");
+                alertBuilder.setCancelable(true);
+                alertBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         finish();
                     }
                 });
-                alertbuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
                     }
                 });
-                AlertDialog alert = alertbuilder.create();
+                AlertDialog alert = alertBuilder.create();
                 alert.show();
             }
         });

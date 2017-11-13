@@ -21,13 +21,13 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
     private List<DataItem> list;
 
     static class ViewHolder extends RecyclerView.ViewHolder{
-        View contexView;
+        View contextView;
         TextView DataId;
         TextView DataContent;
 
         public ViewHolder(View view){
             super(view);
-            contexView = view;
+            contextView = view;
             DataId = view.findViewById(R.id.datalist_id);
             DataContent = view.findViewById(R.id.datalist_content);
         }
@@ -49,7 +49,7 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
         final DataItem item = list.get(position);
         holder.DataId.setText(String.valueOf(item.getId()));
         holder.DataContent.setText(String.valueOf(item.getCreatedDate()));
-        holder.contexView.setOnClickListener(new View.OnClickListener() {
+        holder.contextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();

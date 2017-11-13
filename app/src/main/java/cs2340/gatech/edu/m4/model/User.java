@@ -10,7 +10,7 @@ import java.util.List;
 public class User {
     private int id;
     public static List<String> UserType = Arrays.asList("User", "Admin");
-    private String username, password, email, usertype;
+    private String username, password, email, userType;
 
     public void setId(int id){
         this.id = id;
@@ -40,10 +40,10 @@ public class User {
         return email;
     }
 
-    public void setUsertype(String usertype){
-        this.usertype = usertype;
+    public void setUserType(String usertype){
+        this.userType = usertype;
     }
-    public String getUsertype(){
-        return usertype;
+    public String getUserType(){
+        return userType;
     }
 }

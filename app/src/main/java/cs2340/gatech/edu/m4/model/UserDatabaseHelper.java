@@ -60,7 +60,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_USERNAME, u.getUsername());
         values.put(COLUMN_EMAIL, u.getEmail());
         values.put(COLUMN_PASSWORD, u.getPassword());
-        values.put(COLUMN_USERTYPE, u.getUsertype());
+        values.put(COLUMN_USERTYPE, u.getUserType());
 
         long success_insert = db.insert(TABLE_NAME, null, values);
 

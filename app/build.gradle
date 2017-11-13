@@ -42,6 +42,7 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     testCompile "org.robolectric:robolectric:3.3"
+    androidTestCompile 'junit:junit:4.12'
     androidTestCompile "org.robolectric:robolectric:3.3"
 
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

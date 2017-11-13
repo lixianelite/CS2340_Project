@@ -63,13 +63,13 @@ public class LoginActivity extends AppCompatActivity {
                 String username = mUserView.getText().toString();
                 String password =  mPasswordView.getText().toString();
 
-                String searchpassword = helper.searchPassword(username);
+                String searchPassword = helper.searchPassword(username);
 
                 if (TextUtils.isEmpty(username)) {
                     mUserView.setError(getString(R.string.error_field_required));
                 }
 
-                if (searchpassword.equals(password)) {
+                if (searchPassword.equals(password)) {
                     DataDatabaseHelper.loadId(db);
                     Log.d("check", "size: " + SimpleModel.INSTANCE.getIdContainer().size() + "");
                     DataDatabaseHelper.readDatabase(db, "2013-01-01", "2013-12-31");

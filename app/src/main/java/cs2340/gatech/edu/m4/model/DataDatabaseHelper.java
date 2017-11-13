@@ -125,7 +125,7 @@ public class DataDatabaseHelper extends SQLiteOpenHelper{
         startDate = dateTransform(startDate);
         endDate = dateTransform(endDate);
         Cursor cursor = db.query("data", null, "date >= ? and date <= ?", new String[]{startDate, endDate}, null, null, null);
-        Log.d("DataBasehelper", "startDate: " + startDate + " endData:" + endDate);
+        Log.d("DatabaseHelper", "startDate: " + startDate + " endData:" + endDate);
         if (cursor.moveToFirst()){
             do {
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
