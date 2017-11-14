@@ -60,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
                 u.setUsername(rusername);
                 u.setEmail(remail);
                 u.setPassword(rpassword);
-                u.setUsertype(rusertype);
+                u.setUserType(rusertype);
                 boolean check = helper.CheckIfDataExists(rusername);
                 if (check){
                     AlertDialog.Builder debuilder = new AlertDialog.Builder(RegisterActivity.this);
