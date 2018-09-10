@@ -1,4 +1,3 @@
-# CS2340_Project
 This repository is used to save source code for a android project.
 
 This project used Java to build an application, users can register and login the system, and see the list of rat occurence in New York. They can also see the detail of rat occurence when they click the item in the list. 
